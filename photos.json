@@ -1,0 +1,82 @@
+﻿[
+  {
+    "id": 1,
+    "file": "assets/images/photos/photo_01.jpg",
+    "fallback": "assets/images/photos/photo_01.jpg",
+    "title": "篮球场的第一次",
+    "description": "那天下午，阳光穿过篮球场的树荫，你站在三分线外投进了一个漂亮的球。我假装路过，其实已经看了你好久。",
+    "category": "basketball"
+  },
+  {
+    "id": 2,
+    "file": "assets/images/photos/photo_02.jpg",
+    "fallback": "assets/images/photos/photo_02.jpg",
+    "title": "球场上的你",
+    "description": "你打球时专注的样子，是我见过最好看的风景。",
+    "category": "basketball"
+  },
+  {
+    "id": 3,
+    "file": "assets/images/photos/photo_03.jpg",
+    "fallback": "assets/images/photos/photo_03.jpg",
+    "title": "黄昏的球场",
+    "description": "打完球一起坐在场边看日落，那个黄昏的颜色我一直记得。",
+    "category": "basketball"
+  },
+  {
+    "id": 4,
+    "file": "assets/images/photos/photo_04.jpg",
+    "fallback": "assets/images/photos/photo_04.jpg",
+    "title": "我们的日常",
+    "description": "和你在一起的每一天，都是好天气。",
+    "category": "daily"
+  },
+  {
+    "id": 5,
+    "file": "assets/images/photos/photo_05.jpg",
+    "fallback": "assets/images/photos/photo_05.jpg",
+    "title": "你的笑容",
+    "description": "你笑起来的时候，整个世界都亮了。",
+    "category": "daily"
+  },
+  {
+    "id": 6,
+    "file": "assets/images/photos/photo_06.jpg",
+    "fallback": "assets/images/photos/photo_06.jpg",
+    "title": "在一起",
+    "description": "镜头对焦的是风景，但我的焦点始终在你身上。",
+    "category": "daily"
+  },
+  {
+    "id": 7,
+    "file": "assets/images/photos/photo_07.jpg",
+    "fallback": "assets/images/photos/photo_07.jpg",
+    "title": "唱歌的夜晚",
+    "description": "你唱歌的时候声音很轻，像怕吵醒月亮。我坐在旁边，心想这首歌要是永远不会结束就好了。",
+    "category": "activity"
+  },
+  {
+    "id": 8,
+    "file": "assets/images/photos/photo_08.jpg",
+    "fallback": "assets/images/photos/photo_08.jpg",
+    "title": "游戏时光",
+    "description": "输了你耍赖，赢了你要再来一局。其实输赢都不重要，重要的是对面坐的是你。",
+    "category": "activity"
+  },
+  {
+    "id": 9,
+    "file": "assets/images/photos/photo_09.jpg",
+    "fallback": "assets/images/photos/photo_09.jpg",
+    "title": "属于我们的歌",
+    "description": "A Thousand Years 在耳边响起的时候，我想到的都是你。",
+    "category": "other"
+  },
+  {
+    "id": 10,
+    "file": "assets/images/photos/photo_10.jpg",
+    "fallback": "assets/images/photos/photo_10.jpg",
+    "title": "未完待续",
+    "description": "我们的故事，还很长很长。",
+    "category": "other"
+  }
+]

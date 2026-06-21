@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF8F0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>致 杨珊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E87A5D'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/></svg>">
+  <style>
+    .hero-basketball-bg svg { width: 100%; height: 100%; }
+    .minimize-icon { display: none; }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+  <div class="page-transition" id="page-transition"></div>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-basketball-bg" aria-hidden="true">
+      <svg viewBox="0 0 414 896" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fce4c8"/>
+            <stop offset="40%" stop-color="#f5cba7"/>
+            <stop offset="70%" stop-color="#e8a87c"/>
+            <stop offset="100%" stop-color="#d4896a"/>
+          </linearGradient>
+          <linearGradient id="courtGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d4896a"/>
+            <stop offset="100%" stop-color="#c47a5c"/>
+          </linearGradient>
+          <radialGradient id="sunGlow" cx="0.8" cy="0.25" r="0.3">
+            <stop offset="0%" stop-color="#ffdd99" stop-opacity="0.8"/>
+            <stop offset="50%" stop-color="#f5cba7" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#f5cba7" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Sky -->
+        <rect width="414" height="896" fill="url(#skyGrad)"/>
+        <!-- Sun glow -->
+        <rect width="414" height="896" fill="url(#sunGlow)"/>
+        <!-- Basketball court floor -->
+        <rect y="480" width="414" height="416" fill="url(#courtGrad)" opacity="0.6"/>
+        <!-- Court lines -->
+        <line x1="0" y1="480" x2="414" y2="480" stroke="#c47a5c" stroke-width="2" opacity="0.4"/>
+        <line x1="207" y1="480" x2="207" y2="896" stroke="#c47a5c" stroke-width="1.5" opacity="0.3" stroke-dasharray="8,8"/>
+        <rect x="40" y="500" width="334" height="376" fill="none" stroke="#c47a5c" stroke-width="2" opacity="0.3" rx="8"/>
+        <circle cx="207" cy="760" r="60" fill="none" stroke="#c47a5c" stroke-width="2" opacity="0.25"/>
+        <line x1="140" y1="500" x2="140" y2="650" stroke="#c47a5c" stroke-width="1.5" opacity="0.25"/>
+        <line x1="274" y1="500" x2="274" y2="650" stroke="#c47a5c" stroke-width="1.5" opacity="0.25"/>
+        <!-- Basketball hoop silhouette -->
+        <g transform="translate(207, 160)" opacity="0.35">
+          <rect x="-3" y="0" width="6" height="40" rx="2" fill="#4a3728"/>
+          <circle cx="0" cy="60" r="28" fill="none" stroke="#4a3728" stroke-width="3"/>
+          <line x1="-28" y1="60" x2="-80" y2="60" stroke="#4a3728" stroke-width="3"/>
+          <line x1="28" y1="60" x2="80" y2="60" stroke="#4a3728" stroke-width="3"/>
+          <rect x="-80" y="57" width="160" height="6" rx="3" fill="rgba(74,55,40,0.3)"/>
+          <!-- Net -->
+          <path d="M-20,75 Q-15,95 0,100 Q15,95 20,75" fill="none" stroke="#4a3728" stroke-width="1" opacity="0.4"/>
+          <path d="M-12,78 Q-8,92 0,96 Q8,92 12,78" fill="none" stroke="#4a3728" stroke-width="1" opacity="0.4"/>
+          <path d="M-4,80 Q-2,90 0,92 Q2,90 4,80" fill="none" stroke="#4a3728" stroke-width="1" opacity="0.4"/>
+        </g>
+        <!-- Sunset rays -->
+        <g opacity="0.15">
+          <line x1="350" y1="100" x2="414" y2="300" stroke="#ffdd99" stroke-width="40"/>
+          <line x1="350" y1="130" x2="414" y2="400" stroke="#ffdd99" stroke-width="30"/>
+          <line x1="350" y1="160" x2="414" y2="500" stroke="#ffdd99" stroke-width="20"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-overlay"></div>
+    <canvas id="particle-canvas" class="hero-bg-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">致 杨珊</h1>
+      <p class="hero-title-en">To My Dearest Yang Shan</p>
+      <p class="hero-subtitle">从那个篮球场开始的故事，<br>我想一直讲下去</p>
+      <button class="hero-btn">
+        <span>开始翻阅</span>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+    </div>
+    <div class="scroll-indicator">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+      <span>向下翻阅</span>
+    </div>
+  </section>
+
+  <!-- ===== 相识 Section ===== -->
+  <section class="content-section" id="story-section">
+    <div class="section-inner">
+      <div class="section-divider reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 2v20M2 12h20"/>
+        </svg>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">相识</h2>
+      <p class="section-subtitle reveal reveal-delay-2">那个夏天的篮球场，故事开始的地方</p>
+      <div class="content-card reveal reveal-delay-3">
+        <p>还记得那天下午，篮球场上的阳光透过树叶洒下斑驳的光影。</p>
+        <p>你站在三分线外，手腕一抖，球划出一道漂亮的弧线——空心入网。那个瞬间，球进了，我的心也漏跳了一拍。</p>
+        <p>我假装只是路过，却忍不住多看了你几眼。后来我总在想，也许那天不是我在看篮球，而是命运借着篮球让我看到了你。</p>
+        <div class="decorative-quote">有些相遇，从一开始就写好了故事</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 相伴 Section ===== -->
+  <section class="content-section">
+    <div class="section-inner">
+      <div class="section-divider reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">相伴</h2>
+      <p class="section-subtitle reveal reveal-delay-2">一起走过的日子，都闪着光</p>
+      <div class="cards-grid">
+        <div class="memory-card reveal reveal-delay-2">
+          <div class="memory-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 2v20M2 12h20"/>
+            </svg>
+          </div>
+          <div class="memory-text">
+            <h3>一起打球</h3>
+            <p>球场上是队友，球场下是彼此。你投进三分时笑得像个小孩，我负责给你传球和鼓掌。</p>
+          </div>
+        </div>
+        <div class="memory-card reveal reveal-delay-3">
+          <div class="memory-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+          <div class="memory-text">
+            <h3>一起唱歌</h3>
+            <p>你唱歌时声音很轻，像怕吵醒月亮。而我坐在旁边，希望那首歌永远不会结束。</p>
+          </div>
+        </div>
+        <div class="memory-card reveal reveal-delay-4">
+          <div class="memory-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="6" width="20" height="12" rx="2"/>
+              <path d="M12 12h.01"/>
+              <path d="M9 12h.01"/>
+              <path d="M15 12h.01"/>
+              <path d="M6 16h12"/>
+            </svg>
+          </div>
+          <div class="memory-text">
+            <h3>一起玩游戏</h3>
+            <p>输了你耍赖，赢了你要再来一局。其实输赢都不重要，重要的是对面坐的是你。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 心声 Section ===== -->
+  <section class="heart-section">
+    <div class="section-inner">
+      <div class="section-divider reveal">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </div>
+      <h2 class="section-title reveal reveal-delay-1">心声</h2>
+      <div class="content-card">
+        <p class="heart-line">杨珊，写这些话的时候，我脑海里全是你。</p>
+        <p class="heart-line">从那个篮球场开始，你的身影就再也没有离开过我的视线。</p>
+        <p class="heart-line">我喜欢你在球场上的认真，也喜欢你不经意间的笑容。</p>
+        <p class="heart-line">我喜欢你唱歌时的样子，也喜欢你耍赖时的小脾气。</p>
+        <p class="heart-line">我知道世界很大，未来很远。</p>
+        <p class="heart-line">但我想说的是——</p>
+        <p class="heart-line" style="font-weight: 600; color: var(--orange-warm); font-size: 1.2rem;">
+          无论去哪里，我都想和你一起。
+        </p>
+        <p class="heart-line" style="font-style: italic; color: var(--brown-light);">
+          A Thousand Years 很长，但我愿意。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery Entry ===== -->
+  <section class="content-section" style="background: var(--cream);">
+    <div class="section-inner">
+      <div class="gallery-entry reveal" id="gallery-link">
+        <div class="gallery-entry-thumb">
+          <svg viewBox="0 0 200 200" width="200" height="200" style="background: var(--pink-mist);">
+            <defs>
+              <clipPath id="heartClip">
+                <path d="M100,180 C100,180 20,130 20,70 C20,40 45,20 70,20 C85,20 95,30 100,40 C105,30 115,20 130,20 C155,20 180,40 180,70 C180,130 100,180 100,180Z"/>
+              </clipPath>
+            </defs>
+            <rect width="200" height="200" fill="var(--pink-mist)" rx="100"/>
+            <g clip-path="url(#heartClip)">
+              <rect width="200" height="200" fill="var(--pink-light)" opacity="0.5"/>
+              <circle cx="100" cy="80" r="30" fill="var(--orange-warm)" opacity="0.3"/>
+              <circle cx="70" cy="100" r="20" fill="var(--gold)" opacity="0.3"/>
+              <circle cx="130" cy="100" r="20" fill="var(--gold)" opacity="0.3"/>
+              <text x="100" y="115" text-anchor="middle" fill="var(--brown-dark)" font-size="40" font-family="var(--font-title)">&#x1F4F7;</text>
+            </g>
+          </svg>
+        </div>
+        <p class="gallery-entry-text">&#x1F4F7; 我们的照片</p>
+        <p class="gallery-entry-sub">点击翻开我们的回忆相册</p>
+        <button class="gallery-btn">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>进入相册</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <button class="back-top-btn" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})" aria-label="回到顶部">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </button>
+    <div class="section-inner">
+      <h2 class="section-title">我想对你说</h2>
+      <p>
+        从篮球场到每一个平凡的日子，<br>
+        因为有你在，一切都变得特别。<br>
+        这份心意，我用了一个网页来装下，<br>
+        但远不及你带给我的万分之一。
+      </p>
+      <div class="footer-hearts">&hearts; &hearts; &hearts;</div>
+      <p class="footer-date">—— 献给我最珍视的杨珊 ——</p>
+    </div>
+  </footer>
+
+  <!-- ===== Music Player ===== -->
+  <div class="music-player">
+    <span class="music-label" id="music-label">A Thousand Years</span>
+    <button class="music-btn" id="music-btn" aria-label="音乐控制">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script src="assets/js/music.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
