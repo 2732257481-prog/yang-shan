@@ -1,346 +1,347 @@
 ﻿[
     {
         "id":  1,
-        "file":  "assets/images/photos/photo_01.png",
-        "fallback":  "assets/images/photos/photo_01.png",
+        "file":  "assets/images/photos/photo_01.jpg",
+        "fallback":  "assets/images/photos/photo_01.jpg",
         "title":  "和小杨的第一张图书馆合照",
         "description":  "和你一起在图书馆度过的美好时光。",
         "category":  "activity"
     },
     {
         "id":  2,
-        "file":  "assets/images/photos/photo_02.png",
-        "fallback":  "assets/images/photos/photo_02.png",
+        "file":  "assets/images/photos/photo_02.jpg",
+        "fallback":  "assets/images/photos/photo_02.jpg",
         "title":  "第一次和小杨同学一起唱歌",
         "description":  "投诉小杨老是跑调",
         "category":  "activity"
     },
     {
         "id":  3,
-        "file":  "assets/images/photos/photo_03.png",
-        "fallback":  "assets/images/photos/photo_03.png",
+        "file":  "assets/images/photos/photo_03.jpg",
+        "fallback":  "assets/images/photos/photo_03.jpg",
         "title":  "欢乐谷的回忆",
         "description":  "差点被吓尿的尴尬时刻。",
         "category":  "activity"
     },
     {
         "id":  4,
-        "file":  "assets/images/photos/photo_04.png",
-        "fallback":  "assets/images/photos/photo_04.png",
+        "file":  "assets/images/photos/photo_04.jpg",
+        "fallback":  "assets/images/photos/photo_04.jpg",
         "title":  "长江大桥的回忆",
         "description":  "和你一起漫步大桥的美好时光。",
         "category":  "activity"
     },
     {
         "id":  5,
-        "file":  "assets/images/photos/photo_05.png",
-        "fallback":  "assets/images/photos/photo_05.png",
+        "file":  "assets/images/photos/photo_05.jpg",
+        "fallback":  "assets/images/photos/photo_05.jpg",
         "title":  "欢乐谷的回忆",
         "description":  "差点被吓尿的尴尬时刻。",
         "category":  "activity"
     },
     {
         "id":  6,
-        "file":  "assets/images/photos/photo_06.png",
-        "fallback":  "assets/images/photos/photo_06.png",
+        "file":  "assets/images/photos/photo_06.jpg",
+        "fallback":  "assets/images/photos/photo_06.jpg",
         "title":  "我们的日常",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "daily"
     },
     {
         "id":  7,
-        "file":  "assets/images/photos/photo_07.png",
-        "fallback":  "assets/images/photos/photo_07.png",
+        "file":  "assets/images/photos/photo_07.jpg",
+        "fallback":  "assets/images/photos/photo_07.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  8,
-        "file":  "assets/images/photos/photo_08.png",
-        "fallback":  "assets/images/photos/photo_08.png",
+        "file":  "assets/images/photos/photo_08.jpg",
+        "fallback":  "assets/images/photos/photo_08.jpg",
         "title":  "我们的日常",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "daily"
     },
     {
         "id":  9,
-        "file":  "assets/images/photos/photo_09.png",
-        "fallback":  "assets/images/photos/photo_09.png",
+        "file":  "assets/images/photos/photo_09.jpg",
+        "fallback":  "assets/images/photos/photo_09.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  10,
-        "file":  "assets/images/photos/photo_10.png",
-        "fallback":  "assets/images/photos/photo_10.png",
+        "file":  "assets/images/photos/photo_10.jpg",
+        "fallback":  "assets/images/photos/photo_10.jpg",
         "title":  "欢乐谷的回忆",
         "description":  "差点被吓尿的尴尬时刻。",
         "category":  "activity"
     },
     {
         "id":  11,
-        "file":  "assets/images/photos/photo_11.png",
-        "fallback":  "assets/images/photos/photo_11.png",
+        "file":  "assets/images/photos/photo_11.jpg",
+        "fallback":  "assets/images/photos/photo_11.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  12,
-        "file":  "assets/images/photos/photo_12.png",
-        "fallback":  "assets/images/photos/photo_12.png",
+        "file":  "assets/images/photos/photo_12.jpg",
+        "fallback":  "assets/images/photos/photo_12.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  13,
-        "file":  "assets/images/photos/photo_13.png",
-        "fallback":  "assets/images/photos/photo_13.png",
+        "file":  "assets/images/photos/photo_13.jpg",
+        "fallback":  "assets/images/photos/photo_13.jpg",
         "title":  "我们的日常",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "daily"
     },
     {
         "id":  14,
-        "file":  "assets/images/photos/photo_14.png",
-        "fallback":  "assets/images/photos/photo_14.png",
+        "file":  "assets/images/photos/photo_14.jpg",
+        "fallback":  "assets/images/photos/photo_14.jpg",
         "title":  "偷拍小杨二哈一样的眼神",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "daily"
     },
     {
         "id":  15,
-        "file":  "assets/images/photos/photo_15.png",
-        "fallback":  "assets/images/photos/photo_15.png",
+        "file":  "assets/images/photos/photo_15.jpg",
+        "fallback":  "assets/images/photos/photo_15.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  16,
-        "file":  "assets/images/photos/photo_16.png",
-        "fallback":  "assets/images/photos/photo_16.png",
+        "file":  "assets/images/photos/photo_16.jpg",
+        "fallback":  "assets/images/photos/photo_16.jpg",
         "title":  "我的高中",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  17,
-        "file":  "assets/images/photos/photo_17.png",
-        "fallback":  "assets/images/photos/photo_17.png",
+        "file":  "assets/images/photos/photo_17.jpg",
+        "fallback":  "assets/images/photos/photo_17.jpg",
         "title":  "在一起的时光",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "daily"
     },
     {
         "id":  18,
-        "file":  "assets/images/photos/photo_18.png",
-        "fallback":  "assets/images/photos/photo_18.png",
+        "file":  "assets/images/photos/photo_18.jpg",
+        "fallback":  "assets/images/photos/photo_18.jpg",
         "title":  "在一起的时光",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "daily"
     },
     {
         "id":  19,
-        "file":  "assets/images/photos/photo_19.png",
-        "fallback":  "assets/images/photos/photo_19.png",
+        "file":  "assets/images/photos/photo_19.jpg",
+        "fallback":  "assets/images/photos/photo_19.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  20,
-        "file":  "assets/images/photos/photo_20.png",
-        "fallback":  "assets/images/photos/photo_20.png",
+        "file":  "assets/images/photos/photo_20.jpg",
+        "fallback":  "assets/images/photos/photo_20.jpg",
         "title":  "第一次和小杨同学一起唱歌",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "activity"
     },
     {
         "id":  21,
-        "file":  "assets/images/photos/photo_21.png",
-        "fallback":  "assets/images/photos/photo_21.png",
+        "file":  "assets/images/photos/photo_21.jpg",
+        "fallback":  "assets/images/photos/photo_21.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  22,
-        "file":  "assets/images/photos/photo_22.png",
-        "fallback":  "assets/images/photos/photo_22.png",
+        "file":  "assets/images/photos/photo_22.jpg",
+        "fallback":  "assets/images/photos/photo_22.jpg",
         "title":  "在一起的时光",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "daily"
     },
     {
         "id":  23,
-        "file":  "assets/images/photos/photo_23.png",
-        "fallback":  "assets/images/photos/photo_23.png",
+        "file":  "assets/images/photos/photo_23.jpg",
+        "fallback":  "assets/images/photos/photo_23.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  24,
-        "file":  "assets/images/photos/photo_24.png",
-        "fallback":  "assets/images/photos/photo_24.png",
+        "file":  "assets/images/photos/photo_24.jpg",
+        "fallback":  "assets/images/photos/photo_24.jpg",
         "title":  "在一起的时光",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "daily"
     },
     {
         "id":  25,
-        "file":  "assets/images/photos/photo_25.png",
-        "fallback":  "assets/images/photos/photo_25.png",
+        "file":  "assets/images/photos/photo_25.jpg",
+        "fallback":  "assets/images/photos/photo_25.jpg",
         "title":  "小杨同学的眼神好睿智",
         "description":  "和你在一起的每个瞬间都闪闪发光。",
         "category":  "daily"
     },
     {
         "id":  26,
-        "file":  "assets/images/photos/photo_26.png",
-        "fallback":  "assets/images/photos/photo_26.png",
+        "file":  "assets/images/photos/photo_26.jpg",
+        "fallback":  "assets/images/photos/photo_26.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  27,
-        "file":  "assets/images/photos/photo_27.png",
-        "fallback":  "assets/images/photos/photo_27.png",
+        "file":  "assets/images/photos/photo_27.jpg",
+        "fallback":  "assets/images/photos/photo_27.jpg",
         "title":  "偷拍小杨打乒乓球",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "activity"
     },
     {
         "id":  28,
-        "file":  "assets/images/photos/photo_28.png",
-        "fallback":  "assets/images/photos/photo_28.png",
+        "file":  "assets/images/photos/photo_28.jpg",
+        "fallback":  "assets/images/photos/photo_28.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  29,
-        "file":  "assets/images/photos/photo_29.png",
-        "fallback":  "assets/images/photos/photo_29.png",
+        "file":  "assets/images/photos/photo_29.jpg",
+        "fallback":  "assets/images/photos/photo_29.jpg",
         "title":  "你说小杨心里在想啥呢",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  30,
-        "file":  "assets/images/photos/photo_30.png",
-        "fallback":  "assets/images/photos/photo_30.png",
+        "file":  "assets/images/photos/photo_30.jpg",
+        "fallback":  "assets/images/photos/photo_30.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  31,
-        "file":  "assets/images/photos/photo_31.png",
-        "fallback":  "assets/images/photos/photo_31.png",
+        "file":  "assets/images/photos/photo_31.jpg",
+        "fallback":  "assets/images/photos/photo_31.jpg",
         "title":  "小杨在那装高冷呢",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  32,
-        "file":  "assets/images/photos/photo_32.png",
-        "fallback":  "assets/images/photos/photo_32.png",
+        "file":  "assets/images/photos/photo_32.jpg",
+        "fallback":  "assets/images/photos/photo_32.jpg",
         "title":  "珍贵的回忆",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  33,
-        "file":  "assets/images/photos/photo_33.png",
-        "fallback":  "assets/images/photos/photo_33.png",
+        "file":  "assets/images/photos/photo_33.jpg",
+        "fallback":  "assets/images/photos/photo_33.jpg",
         "title":  "笑的好可爱",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  34,
-        "file":  "assets/images/photos/photo_34.png",
-        "fallback":  "assets/images/photos/photo_34.png",
+        "file":  "assets/images/photos/photo_34.jpg",
+        "fallback":  "assets/images/photos/photo_34.jpg",
         "title":  "俯视小短腿的小杨",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  35,
-        "file":  "assets/images/photos/photo_35.png",
-        "fallback":  "assets/images/photos/photo_35.png",
+        "file":  "assets/images/photos/photo_35.jpg",
+        "fallback":  "assets/images/photos/photo_35.jpg",
         "title":  "美丽的湖工大",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "campus"
     },
     {
         "id":  36,
-        "file":  "assets/images/photos/photo_36.png",
-        "fallback":  "assets/images/photos/photo_36.png",
+        "file":  "assets/images/photos/photo_36.jpg",
+        "fallback":  "assets/images/photos/photo_36.jpg",
         "title":  "珍贵的回忆",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  37,
-        "file":  "assets/images/photos/photo_37.png",
-        "fallback":  "assets/images/photos/photo_37.png",
+        "file":  "assets/images/photos/photo_37.jpg",
+        "fallback":  "assets/images/photos/photo_37.jpg",
         "title":  "偷拍小杨图书馆睡觉",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "activity"
     },
     {
         "id":  38,
-        "file":  "assets/images/photos/photo_38.png",
-        "fallback":  "assets/images/photos/photo_38.png",
+        "file":  "assets/images/photos/photo_38.jpg",
+        "fallback":  "assets/images/photos/photo_38.jpg",
         "title":  "好看的叶子",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "campus"
     },
     {
         "id":  39,
-        "file":  "assets/images/photos/photo_39.png",
-        "fallback":  "assets/images/photos/photo_39.png",
+        "file":  "assets/images/photos/photo_39.jpg",
+        "fallback":  "assets/images/photos/photo_39.jpg",
         "title":  "美丽的校园",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "campus"
     },
     {
         "id":  40,
-        "file":  "assets/images/photos/photo_40.png",
-        "fallback":  "assets/images/photos/photo_40.png",
+        "file":  "assets/images/photos/photo_40.jpg",
+        "fallback":  "assets/images/photos/photo_40.jpg",
         "title":  "珍贵的回忆",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  41,
-        "file":  "assets/images/photos/photo_41.png",
-        "fallback":  "assets/images/photos/photo_41.png",
+        "file":  "assets/images/photos/photo_41.jpg",
+        "fallback":  "assets/images/photos/photo_41.jpg",
         "title":  "小美女的私人独家照片",
         "description":  "这些回忆我都好好收藏着。",
         "category":  "daily"
     },
     {
         "id":  42,
-        "file":  "assets/images/photos/photo_42.png",
-        "fallback":  "assets/images/photos/photo_42.png",
+        "file":  "assets/images/photos/photo_42.jpg",
+        "fallback":  "assets/images/photos/photo_42.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     },
     {
         "id":  43,
-        "file":  "assets/images/photos/photo_43.png",
-        "fallback":  "assets/images/photos/photo_43.png",
+        "file":  "assets/images/photos/photo_43.jpg",
+        "fallback":  "assets/images/photos/photo_43.jpg",
         "title":  "湖工大的校园",
         "description":  "那些平平淡淡却最珍贵的每一天。",
         "category":  "campus"
     }
 ]
+

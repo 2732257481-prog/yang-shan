@@ -516,3 +516,7 @@
 .music-player {
   z-index: 9998;
 }
+
+.gallery-overlay.active ~ .music-player {
+  bottom: 90px;
+}

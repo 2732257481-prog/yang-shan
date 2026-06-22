@@ -139,21 +139,39 @@ if (chapters.length && navLinks.length) {
 }
 
 // ===== Gallery Navigation (Overlay) =====
+
+
 function navigateToGallery() {
-  MusicPlayer.pause();
-  MusicPlayer.switchTrack("gallery");
+  if (MusicPlayer.homeAudio) MusicPlayer.homeAudio.pause();
+  var a = new Audio("assets/audio/gallery.mp3");
+  a.loop = true; a.volume = 0.4;
+  a.addEventListener("ended", function(){ a.currentTime = 0; a.play().catch(function(){}); });
+  a.play().catch(function(){});
+  MusicPlayer.galleryAudio = a;
+  MusicPlayer.activePlayer = "gallery";
+  MusicPlayer.isPlaying = true;
+  if (MusicPlayer.label) { MusicPlayer.label.textContent = "手写的从前 — 周杰伦"; MusicPlayer.label.classList.add("show"); }
+  MusicPlayer.btn.classList.add("playing");
+  MusicPlayer.btn.innerHTML = "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"6\" y=\"4\" width=\"4\" height=\"16\"/><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\"/></svg>";
   document.getElementById("gallery-overlay").classList.add("active");
   document.body.style.overflow = "hidden";
-  MusicPlayer.play();
 }
-
 function closeGalleryOverlay() {
   if (typeof closeViewer === "function") closeViewer();
+  if (MusicPlayer.galleryAudio) MusicPlayer.galleryAudio.pause();
+  var a = new Audio("assets/audio/a-thousand-years.mp3");
+  a.loop = true; a.volume = 0.4;
+  a.addEventListener("ended", function(){ a.currentTime = 0; a.play().catch(function(){}); });
+  a.play().catch(function(){});
+  MusicPlayer.homeAudio = a;
+  MusicPlayer.activePlayer = "main";
+  MusicPlayer.isPlaying = true;
+  if (MusicPlayer.label) { MusicPlayer.label.textContent = "A Thousand Years"; MusicPlayer.label.classList.add("show"); }
+  MusicPlayer.btn.classList.add("playing");
+  MusicPlayer.btn.innerHTML = "<svg class=\"icon\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"6\" y=\"4\" width=\"4\" height=\"16\"/><rect x=\"14\" y=\"4\" width=\"4\" height=\"16\"/></svg>";
   document.getElementById("gallery-overlay").classList.remove("active");
   document.body.style.overflow = "";
 }
-
-// ===== Photo Preview =====
 async function loadPhotoPreview() {
   const grid = document.getElementById("photo-preview");
   if (!grid) return;
@@ -275,3 +293,5 @@ document.querySelectorAll(".chapter-heading").forEach((title) => {
 // ===== Gallery Overlay Event Handlers =====
 document.getElementById("gallery-link")?.addEventListener("click", () => navigateToGallery());
 document.getElementById("gallery-overlay-close")?.addEventListener("click", () => closeGalleryOverlay());
+
+
