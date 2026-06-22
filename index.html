@@ -454,6 +454,45 @@
     </div>
   </div>
 
+
+<!-- ===== Gallery Overlay ===== -->
+<div class="gallery-overlay" id="gallery-overlay">
+  <header class="gallery-header">
+    <button class="gallery-back-btn" id="gallery-overlay-close">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      <span>返回</span>
+    </button>
+    <span class="gallery-header-title">我们的回忆</span>
+    <span style="width:60px"></span>
+  </header>
+
+  <div class="gallery-grid" id="gallery-grid">
+    <div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:rgba(255,255,255,0.5);">
+      <p style="margin-bottom:8px; font-size:1.2rem;">&#x1F4F7; 加载中...</p>
+      <p style="font-size:0.85rem;">照片正在载入，请稍候</p>
+    </div>
+  </div>
+
+  <!-- Fullscreen Viewer -->
+  <div class="viewer" id="viewer">
+    <button class="viewer-close" onclick="closeViewer()" aria-label="关闭">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <div class="viewer-image-wrap" id="viewer-image-wrap">
+      <img id="viewer-image" src="" alt="">
+    </div>
+    <div class="viewer-caption">
+      <div class="viewer-dots" id="viewer-dots"></div>
+      <h3 id="viewer-title"></h3>
+      <p id="viewer-desc"></p>
+    </div>
+  </div>
+</div>
   <div class="music-player">
     <span class="music-label" id="music-label">A Thousand Years</span>
     <button class="music-btn" id="music-btn" aria-label="音乐控制">
@@ -464,5 +503,6 @@
   <script src="assets/js/music.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/enhanced.js"></script>
+  <script src="assets/js/gallery.js"></script>
 </body>
 </html>

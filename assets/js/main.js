@@ -138,22 +138,20 @@ if (chapters.length && navLinks.length) {
   chapters.forEach((ch) => chapterObserver.observe(ch));
 }
 
-// ===== Gallery Navigation =====
-document.getElementById("gallery-link")?.addEventListener("click", () => navigateToGallery());
-
+// ===== Gallery Navigation (Overlay) =====
 function navigateToGallery() {
-  const transition = document.getElementById("page-transition");
-  if (transition) {
-    transition.classList.add("active");
-    setTimeout(() => { window.location.href = "gallery.html"; }, 500);
-  } else {
-    window.location.href = "gallery.html";
-  }
+  MusicPlayer.pause();
+  MusicPlayer.switchTrack("gallery");
+  document.getElementById("gallery-overlay").classList.add("active");
+  document.body.style.overflow = "hidden";
+  MusicPlayer.play();
 }
 
-window.addEventListener("pageshow", () => {
-  document.getElementById("page-transition")?.classList.remove("active");
-});
+function closeGalleryOverlay() {
+  if (typeof closeViewer === "function") closeViewer();
+  document.getElementById("gallery-overlay").classList.remove("active");
+  document.body.style.overflow = "";
+}
 
 // ===== Photo Preview =====
 async function loadPhotoPreview() {
@@ -273,3 +271,7 @@ document.querySelectorAll(".chapter-heading").forEach((title) => {
   }, { threshold: 0.4 });
   charObserver.observe(title);
 });
+
+// ===== Gallery Overlay Event Handlers =====
+document.getElementById("gallery-link")?.addEventListener("click", () => navigateToGallery());
+document.getElementById("gallery-overlay-close")?.addEventListener("click", () => closeGalleryOverlay());

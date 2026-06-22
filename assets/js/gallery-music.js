@@ -1,7 +1,7 @@
-const GalleryMusicPlayer = {
+﻿const GalleryMusicPlayer = {
   audio: null,
   isPlaying: false,
-  hasInteracted: false,
+  autoPlayed: false,
 
   init() {
     this.audio = new Audio();
@@ -32,19 +32,41 @@ const GalleryMusicPlayer = {
       this.toggle();
     });
 
-    // 页面任意位置第一次点击 → 自动开始播放
-    document.addEventListener("click", () => {
-      if (!this.hasInteracted) {
-        this.hasInteracted = true;
+    // 如果首页已交互过（sessionStorage），自动播放
+    if (sessionStorage.getItem("music_has_interacted") === "true") {
+      this.tryAutoPlay();
+    }
+
+    // 页面内首次点击 → 播放（以防自动播放失败）
+    const markInteracted = () => {
+      if (!this.autoPlayed) {
+        this.autoPlayed = true;
         this.play();
       }
-    });
-    document.addEventListener("touchstart", () => {
-      if (!this.hasInteracted) {
-        this.hasInteracted = true;
-        this.play();
+    };
+    document.addEventListener("click", markInteracted);
+    document.addEventListener("touchstart", markInteracted);
+  },
+
+  tryAutoPlay() {
+    // 延迟一点等页面渲染完
+    setTimeout(() => {
+      const promise = this.audio.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          this.autoPlayed = true;
+          this.isPlaying = true;
+          this.updateUI(true);
+        }).catch(() => {
+          // 自动播放被阻止，等待用户点击
+          this.autoPlayed = false;
+        });
+      } else {
+        this.autoPlayed = true;
+        this.isPlaying = true;
+        this.updateUI(true);
       }
-    });
+    }, 300);
   },
 
   play() {
@@ -53,12 +75,14 @@ const GalleryMusicPlayer = {
     if (promise !== undefined) {
       promise.then(() => {
         this.isPlaying = true;
+        this.autoPlayed = true;
         this.updateUI(true);
       }).catch(() => {
         this.isPlaying = false;
       });
     } else {
       this.isPlaying = true;
+      this.autoPlayed = true;
       this.updateUI(true);
     }
   },

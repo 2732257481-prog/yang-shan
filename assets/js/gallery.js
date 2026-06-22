@@ -25,8 +25,8 @@ async function loadPhotos() {
     for (let i = 1; i <= 10; i++) {
       photos.push({
         id: i,
-        file: "assets/images/photos/photo_" + String(i).padStart(2, "0") + ".webp",
-        fallback: "assets/images/photos/photo_" + String(i).padStart(2, "0") + ".jpg",
+        file: "assets/images/photos/photo_" + String(i).padStart(2, "0") + ".png",
+        fallback: "assets/images/photos/photo_" + String(i).padStart(2, "0") + ".png",
         title: "回忆 #" + i,
         description: "我们的美好时光 #" + i,
         category: i <= 3 ? "basketball" : i <= 6 ? "daily" : i <= 8 ? "activity" : "other"
@@ -68,7 +68,9 @@ function closeViewer() {
   const viewer = document.getElementById("viewer");
   if (!viewer) return;
   viewer.classList.remove("active");
-  document.body.style.overflow = "";
+  if (!document.getElementById('gallery-overlay')?.classList.contains('active')) {
+    document.body.style.overflow = '';
+  }
 }
 
 function updateViewerImage() {
@@ -194,3 +196,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const transition = document.getElementById("page-transition");
   if (transition) setTimeout(() => transition.classList.remove("active"), 100);
 });
+

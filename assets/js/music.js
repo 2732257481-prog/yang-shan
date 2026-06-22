@@ -2,6 +2,7 @@
   audio: null,
   isPlaying: false,
   hasInteracted: false,
+  currentTrack: "main", // "main" | "gallery"
 
   init() {
     this.audio = new Audio();
@@ -32,19 +33,70 @@
       this.toggle();
     });
 
-    // 页面任意位置第一次点击 → 自动开始播放
-    document.addEventListener("click", () => {
+    // 点击"翻阅我们的故事"按钮 → 播放音乐
+    const startBtn = document.getElementById("hero-start-btn");
+    if (startBtn) {
+      startBtn.addEventListener("click", () => {
+        if (!this.hasInteracted) {
+          this.hasInteracted = true;
+          this.syncAndPlay();
+        }
+      });
+    }
+
+    // 滚动经过首屏（40%）→ 播放音乐
+    let scrollTriggered = false;
+    window.addEventListener("scroll", () => {
+      if (!this.hasInteracted && !scrollTriggered && window.scrollY > window.innerHeight * 0.4) {
+        scrollTriggered = true;
+        this.hasInteracted = true;
+        this.syncAndPlay();
+      }
+    }, { passive: true });
+
+    // 页面任意位置首次点击 → 播放音乐 + 记录交互状态
+    const markInteracted = () => {
       if (!this.hasInteracted) {
         this.hasInteracted = true;
-        this.play();
+        this.syncAndPlay();
       }
-    });
-    document.addEventListener("touchstart", () => {
-      if (!this.hasInteracted) {
-        this.hasInteracted = true;
-        this.play();
-      }
-    });
+    };
+    document.addEventListener("click", markInteracted);
+    document.addEventListener("touchstart", markInteracted);
+  },
+
+  // 记录状态到 sessionStorage 并播放
+  syncAndPlay() {
+    sessionStorage.setItem("music_has_interacted", "true");
+    this.play();
+  },
+
+  // 切换曲目（首页 / 相册）
+  switchTrack(track) {
+    const isGallery = track === "gallery";
+    const newSrc = isGallery
+      ? "assets/audio/手写的从前.mp3"
+      : "assets/audio/a-thousand-years.mp3";
+    const newLabel = isGallery
+      ? "手写的从前 — 周杰伦"
+      : "A Thousand Years";
+
+    if (this.currentTrack === track) return; // 已是当前曲目
+
+    const wasPlaying = this.isPlaying;
+    this.audio.pause();
+    this.audio.src = newSrc;
+    this.audio.currentTime = 0;
+    this.audio.load();
+    this.currentTrack = track;
+
+    if (this.label) {
+      this.label.textContent = newLabel;
+    }
+
+    if (wasPlaying) {
+      this.play();
+    }
   },
 
   play() {
@@ -79,7 +131,7 @@
     if (playing) {
       this.btn.classList.add("playing");
       this.btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
-      if (this.label) { this.label.textContent = "A Thousand Years"; this.label.classList.add("show"); }
+      if (this.label) { this.label.classList.add("show"); }
     } else {
       this.btn.classList.remove("playing");
       this.btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';

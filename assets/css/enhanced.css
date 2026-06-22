@@ -486,3 +486,33 @@
   z-index: 10;
 }
 
+/* ===== Gallery Overlay ===== */
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: linear-gradient(180deg, #4A3020 0%, #3D2818 30%, #2A1A10 100%);
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.gallery-overlay.active {
+  display: flex;
+}
+.gallery-overlay .gallery-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(74,55,40,0.97) 0%, rgba(74,55,40,0.6) 70%, transparent 100%);
+}
+.gallery-overlay .gallery-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+  padding: 8px !important;
+  padding-bottom: calc(90px + var(--safe-bottom)) !important;
+}
+.music-player {
+  z-index: 9998;
+}
