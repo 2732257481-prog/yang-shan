@@ -1,0 +1,488 @@
+﻿/* ========================================
+   Enhanced Visual Elements — 杨珊的故事
+   ======================================== */
+
+/* ===== 1. 金色粒子飘落 (Hero) ===== */
+.golden-particles {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+.golden-particle {
+  position: absolute; top: -10px; width: 6px; height: 6px;
+  background: radial-gradient(circle, var(--gold-light), var(--gold));
+  border-radius: 50%; opacity: 0;
+  animation: goldenFall linear infinite;
+}
+@keyframes goldenFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== 2. 黄昏光晕 (ch01) ===== */
+.sunset-glow {
+  position: absolute; bottom: 0; left: -50%; width: 200%; height: 60%;
+  background: radial-gradient(ellipse at center bottom, rgba(255,184,77,0.35), transparent 70%);
+  animation: sunsetPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sunsetPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ===== 3. 气泡对话 (ch02) ===== */
+.quote-chat { max-width: 480px; margin: 0 auto; padding: 8px 0; }
+.chat-bubble {
+  padding: 14px 18px; border-radius: 16px; margin-bottom: 10px;
+  max-width: 80%; position: relative; box-shadow: var(--shadow-soft);
+}
+.chat-bubble .chat-name {
+  display: block; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 1px; margin-bottom: 5px; opacity: 0.6;
+}
+.chat-left {
+  margin-right: auto; background: var(--card-bg);
+  border: 1px solid rgba(245,181,160,0.45);
+  border-bottom-left-radius: 4px;
+}
+.chat-right {
+  margin-left: auto; background: linear-gradient(135deg, rgba(245,181,160,0.3), rgba(255,184,77,0.15));
+  border: 1px solid rgba(232,90,66,0.2);
+  border-bottom-right-radius: 4px;
+}
+.chat-bubble p { font-size: 0.9rem; color: var(--brown-mid); line-height: 1.7; margin: 0; }
+.chat-dots {
+  display: flex; justify-content: center; gap: 4px; padding: 6px 0;
+}
+.chat-dots span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--pink-light); opacity: 0.5;
+  animation: dotFade 1.5s ease-in-out infinite;
+}
+.chat-dots span:nth-child(2) { animation-delay: 0.3s; }
+.chat-dots span:nth-child(3) { animation-delay: 0.6s; }
+@keyframes dotFade {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.chat-insight { text-align: center; padding: 18px 8px 0; position: relative; }
+.chat-insight p {
+  font-family: var(--font-title); font-size: 1rem; color: var(--brown-mid);
+  font-style: italic; line-height: 1.8;
+}
+.insight-line {
+  display: block; width: 40px; height: 2px; margin: 0 auto 12px;
+  background: linear-gradient(90deg, transparent, var(--orange-warm), transparent);
+}
+
+/* ===== 4. 时间步进轨迹 (ch03) ===== */
+.day-trail { max-width: 380px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.trail-step {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0; position: relative;
+  opacity: 0; transform: translateX(-20px);
+  animation: trailSlide 0.6s ease forwards;
+  animation-delay: calc(var(--s, 1) * 0.15s);
+}
+@keyframes trailSlide {
+  to { opacity: 1; transform: translateX(0); }
+}
+.trail-step::before {
+  content: ""; position: absolute; left: 32px; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg, var(--pink-light), var(--orange-warm));
+  opacity: 0.25;
+}
+.trail-step:last-child::before { display: none; }
+.trail-time {
+  flex-shrink: 0; width: 52px; font-size: 0.68rem; font-weight: 700;
+  color: var(--orange-warm); text-align: center;
+}
+.trail-dot {
+  flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--pink-light); border: 2px solid var(--cream);
+  box-shadow: 0 0 0 2px var(--pink-light); z-index: 1;
+}
+.trail-step-em .trail-dot { background: var(--orange-warm); box-shadow: 0 0 0 2px var(--orange-warm); }
+.trail-desc { font-size: 0.85rem; color: var(--brown-mid); line-height: 1.5; }
+
+/* 浮动表情 */
+.mood-overlay { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.mood-word {
+  position: absolute; top: 20%; font-size: 1.8rem; opacity: 0.2;
+  animation: moodFloat var(--dur,6s) ease-in-out infinite;
+  animation-delay: var(--delay,0s);
+}
+@keyframes moodFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+  50% { transform: translateY(-20px) rotate(10deg); opacity: 0.35; }
+}
+
+/* ===== 5. 心跳脉冲 (ch04) ===== */
+.heartbeat-ring {
+  display: flex; justify-content: center; align-items: center;
+  gap: 0; position: absolute; bottom: 15%; left: 50%;
+  transform: translateX(-50%);
+}
+.heartbeat-ring span {
+  display: block; width: 60px; height: 60px; border-radius: 50%;
+  border: 2px solid var(--orange-warm); position: absolute;
+  animation: heartBeat 2.5s ease-out infinite;
+  opacity: 0;
+}
+.heartbeat-ring span:nth-child(1) { animation-delay: 0s; }
+.heartbeat-ring span:nth-child(2) { animation-delay: 0.4s; border-color: var(--gold); }
+.heartbeat-ring span:nth-child(3) { animation-delay: 0.8s; border-color: var(--pink-light); }
+@keyframes heartBeat {
+  0% { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ===== 6. 音符浮动 + 跑调波形 (ch05) ===== */
+.music-notes {
+  display: flex; justify-content: center; gap: 4px; margin-top: 8px;
+}
+.note-note {
+  font-size: 1rem; color: var(--orange-warm); opacity: 0.6;
+  animation: noteFloat 2s ease-in-out infinite;
+  animation-delay: calc(var(--n,1) * 0.3s);
+}
+@keyframes noteFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(-8px) rotate(15deg); opacity: 0.8; }
+}
+.offkey-badge {
+  display: inline-block; font-size: 0.65rem; font-weight: 500;
+  padding: 2px 8px; border-radius: 10px;
+  background: rgba(232,90,66,0.12); color: var(--coral-deep);
+  vertical-align: middle; margin-left: 4px;
+}
+.offkey-visual { margin-top: 8px; }
+.offkey-path { transition: d 0.3s ease; }
+.offkey-path.her { animation: offkeyWobble 3s ease-in-out infinite; }
+@keyframes offkeyWobble {
+  0%, 100% { d: path("M10,20 Q25,3 45,18 T75,8 T110,20"); }
+  33% { d: path("M10,20 Q25,12 45,8 T75,18 T110,20"); }
+  66% { d: path("M10,20 Q25,5 45,15 T75,10 T110,20"); }
+}
+.activity-card-music {
+  border-color: rgba(232,90,66,0.3) !important;
+  background: linear-gradient(135deg, var(--card-bg), rgba(255,184,77,0.1)) !important;
+}
+.activity-card-offkey {
+  border-color: rgba(245,181,160,0.5) !important;
+  background: linear-gradient(135deg, var(--card-bg), rgba(245,181,160,0.1)) !important;
+}
+
+/* ===== 7. 星空背景 (ch06) ===== */
+.starscape {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  overflow: hidden; background: radial-gradient(ellipse at 50% 0%, transparent 30%, rgba(92,58,40,0.04) 100%);
+}
+.star {
+  position: absolute; width: calc(var(--s,1) * 3px); height: calc(var(--s,1) * 3px);
+  background: var(--gold-light); border-radius: 50%;
+  box-shadow: 0 0 4px var(--gold-light), 0 0 8px rgba(232,160,85,0.3);
+  animation: starTwinkle 3s ease-in-out infinite;
+  animation-delay: calc(var(--s,1) * -1s);
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.night-talk { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
+.talk-scene {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 20px 18px; border-radius: 18px;
+  background: linear-gradient(160deg, rgba(92,58,40,0.06), rgba(92,58,40,0.02));
+  border: 1px solid rgba(92,58,40,0.08);
+}
+.talk-moon { flex-shrink: 0; width: 50px; height: 50px; }
+.moon-crescent {
+  display: block; width: 40px; height: 40px;
+  background: radial-gradient(circle at 65% 50%, var(--gold-light) 40%, transparent 41%);
+  border-radius: 50%; animation: moonGlow 3s ease-in-out infinite;
+}
+@keyframes moonGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; filter: drop-shadow(0 0 8px var(--gold-light)); }
+}
+.talk-content p {
+  font-family: var(--font-title); font-size: 0.95rem;
+  color: var(--brown-mid); line-height: 2;
+  position: relative; padding-left: 12px;
+}
+.talk-content p::before {
+  content: "\2605"; position: absolute; left: 0;
+  color: var(--gold); font-size: 0.6rem; top: 2px;
+}
+
+/* ===== 8. 追逐动画 (ch07) ===== */
+.chase-scene {
+  position: relative; height: 80px; max-width: 360px;
+  margin: 0 auto 20px; overflow: hidden;
+}
+.chase-runner {
+  position: absolute; font-size: 2rem;
+  animation: chaseMove 4s ease-in-out infinite;
+  z-index: 2;
+}
+.runner-me { left: 0; animation-name: chaseRun1; }
+.runner-her { right: 0; animation-name: chaseRun2; }
+.chase-stick {
+  position: absolute; font-size: 1.2rem; z-index: 1;
+  animation: stickBounce 2s ease-in-out infinite;
+}
+.stick-a { left: 20%; top: 40%; animation-delay: 0.5s; }
+.stick-b { right: 25%; top: 30%; animation-delay: 1.5s; }
+@keyframes chaseRun1 {
+  0%, 100% { left: 5%; top: 20%; }
+  25% { left: 45%; top: 10%; }
+  50% { left: 75%; top: 30%; transform: scaleX(-1); }
+  75% { left: 40%; top: 5%; transform: scaleX(-1); }
+}
+@keyframes chaseRun2 {
+  0%, 100% { right: 5%; top: 5%; }
+  25% { right: 50%; top: 30%; }
+  50% { right: 75%; top: 10%; transform: scaleX(-1); }
+  75% { right: 40%; top: 35%; transform: scaleX(-1); }
+}
+@keyframes stickBounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(20deg); }
+}
+
+/* ===== 9. 断线重连 (ch08) ===== */
+.reconnect-visual {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px; margin-bottom: 16px;
+}
+.reconnect-line.broken {
+  stroke-dasharray: 8,6; animation: brokenPulse 2s ease-in-out infinite;
+}
+@keyframes brokenPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.reconnect-line.mended {
+  stroke-dasharray: 60; stroke-dashoffset: 60;
+  animation: mendDraw 2s ease-out 0.5s forwards;
+}
+@keyframes mendDraw {
+  to { stroke-dashoffset: 0; }
+}
+.reconnect-label {
+  font-size: 0.7rem; color: var(--brown-light); font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* ===== 10. 情绪过渡 (ch09) ===== */
+.mood-transition {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 18px;
+}
+.mood-icon { font-size: 1.6rem; animation: moodPop 0.5s ease forwards; }
+.mood-start { animation-delay: 0s; }
+.mood-mid { animation-delay: 0.3s; }
+.mood-end { animation-delay: 0.6s; }
+.mood-arrow {
+  font-size: 1rem; color: var(--brown-light);
+  animation: arrowPulse 1s ease-in-out infinite;
+}
+@keyframes moodPop {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(0); opacity: 0.4; }
+  50% { transform: translateX(4px); opacity: 0.8; }
+}
+
+/* ===== 11. 拥抱光晕 (ch10) ===== */
+.hug-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none; z-index: 0;
+}
+.hug-ring {
+  position: absolute; width: calc(var(--r,1) * 60px);
+  height: calc(var(--r,1) * 60px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,181,160,0.15), transparent 70%);
+  animation: hugExpand 4s ease-in-out infinite;
+  animation-delay: calc(var(--r,1) * -0.5s);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
+@keyframes hugExpand {
+  0%, 100% { transform: translate(-50%,-50%) scale(0.8); opacity: 0.3; }
+  50% { transform: translate(-50%,-50%) scale(1.2); opacity: 0.7; }
+}
+
+.chapter-hug { position: relative; }
+.hug-letter {
+  background: linear-gradient(160deg, rgba(255,248,240,0.95), rgba(255,243,232,0.95)) !important;
+  border-color: rgba(245,181,160,0.5) !important;
+  position: relative; z-index: 1;
+}
+
+/* ===== 12. 日落到夜晚 (ch11) ===== */
+.daycycle-bg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.daycycle-layer {
+  position: absolute; inset: 0; transition: opacity 1s ease;
+}
+.day-sky {
+  background: linear-gradient(180deg, rgba(255,184,77,0.08) 0%, rgba(245,181,160,0.05) 100%);
+  animation: cycleDay 12s ease-in-out infinite;
+}
+.dusk-sky {
+  background: linear-gradient(180deg, rgba(232,90,66,0.1) 0%, rgba(232,160,85,0.15) 50%, transparent 100%);
+  animation: cycleDusk 12s ease-in-out infinite;
+}
+.night-sky {
+  background: linear-gradient(180deg, transparent 60%, rgba(92,58,40,0.08) 100%);
+  animation: cycleNight 12s ease-in-out infinite;
+}
+@keyframes cycleDay {
+  0%, 30%, 100% { opacity: 1; }
+  50%, 80% { opacity: 0.3; }
+}
+@keyframes cycleDusk {
+  0%, 30%, 100% { opacity: 0; }
+  40%, 60% { opacity: 1; }
+  70%, 100% { opacity: 0; }
+}
+@keyframes cycleNight {
+  0%, 50% { opacity: 0; }
+  70%, 100% { opacity: 0.8; }
+}
+
+.ferris-wheel-icon {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; margin-top: 20px; opacity: 0.6;
+}
+.ferris-wheel {
+  font-size: 2.5rem; animation: wheelSpin 10s linear infinite;
+  display: inline-block;
+}
+@keyframes wheelSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.ferris-label { font-size: 0.72rem; color: var(--brown-light); letter-spacing: 2px; }
+
+/* ===== 13. 情书样式 (ch12) ===== */
+.love-letter {
+  text-align: center; padding: 28px 20px !important;
+  position: relative; z-index: 1;
+}
+.letter-line {
+  margin-bottom: 4px; opacity: 0; transform: translateY(12px);
+  animation: letterReveal 0.6s ease forwards;
+}
+.letter-line:nth-child(1) { animation-delay: 0.1s; }
+.letter-line:nth-child(2) { animation-delay: 0.2s; }
+.letter-line:nth-child(3) { animation-delay: 0.3s; }
+.letter-line:nth-child(5) { animation-delay: 0.5s; }
+.letter-line:nth-child(6) { animation-delay: 0.6s; }
+.letter-line:nth-child(7) { animation-delay: 0.7s; }
+.letter-line:nth-child(9) { animation-delay: 0.9s; }
+.letter-line:nth-child(10) { animation-delay: 1s; }
+.letter-line:nth-child(11) { animation-delay: 1.1s; }
+.letter-line:nth-child(13) { animation-delay: 1.3s; }
+.letter-line:nth-child(14) { animation-delay: 1.4s; }
+@keyframes letterReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+.letter-gap { height: 14px; }
+.letter-line span {
+  font-family: var(--font-title); font-size: 1rem;
+  color: var(--brown-mid); line-height: 2;
+}
+.letter-em span {
+  font-size: 1.1rem; font-weight: 600; color: var(--brown-dark);
+}
+.letter-final span {
+  font-size: 1.15rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--coral-deep), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-flow {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== 14. 金色粒子烟花 (ch12) ===== */
+.golden-fireworks {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.firework-particle {
+  position: absolute; width: 4px; height: 4px;
+  background: var(--gold); border-radius: 50%;
+  animation: fireworkBurst 3s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fireworkBurst {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--fx,100px), var(--fy,-100px)) scale(0); opacity: 0; }
+}
+
+/* ===== 15. 章节脚注 ===== */
+.chapter-footnote {
+  text-align: center; font-family: var(--font-title);
+  font-size: 0.95rem; color: var(--brown-light);
+  font-style: italic; margin-top: 16px;
+}
+
+/* ===== 16. 原有样式小补强 ===== */
+.content-card p.drop-cap::first-letter {
+  font-family: var(--font-title); font-size: 2rem;
+  font-weight: 700; color: var(--coral-deep);
+  float: left; margin-right: 6px; line-height: 1;
+}
+.card-strip {
+  height: 2px; margin-top: 14px;
+  background: linear-gradient(90deg, transparent, var(--pink-light), transparent);
+}
+.chapter-nav-menu .nav-link {
+  font-size: 0.7rem;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .golden-particle, .sunset-glow, .chat-dots span, .trail-step,
+  .mood-word, .heartbeat-ring span, .note-note, .offkey-path.her,
+  .star, .moon-crescent, .chase-runner, .chase-stick,
+  .reconnect-line, .hug-ring, .daycycle-layer, .ferris-wheel,
+  .mood-icon, .mood-arrow, .firework-particle {
+    animation: none !important;
+  }
+}
+
+/* ===== 修复：锚点跳转被固定导航栏遮住 ===== */
+.story-chapter,
+.chapter-gallery,
+.chapter-nav-menu,
+.site-footer {
+  scroll-margin-top: 100px;
+}
+
+/* ===== 修复：页脚顶部空间 ===== */
+.site-footer {
+  
+}
+
+/* ===== 修复：回到顶部按钮被波浪遮住 ===== */
+.back-top-btn {
+  top: -70px;
+  z-index: 10;
+}
+
