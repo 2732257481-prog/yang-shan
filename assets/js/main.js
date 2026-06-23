@@ -1,15 +1,30 @@
 ﻿// CDN prefix for GitHub-hosted assets
 var CDN = 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/';
 
+// ===== Throttled Scroll Handler =====
+// All scroll-dependent work goes through one rAF tick
+var scrollTicking = false;
+var scrollHandlers = [];
+function onScroll(fn) { scrollHandlers.push(fn); }
+window.addEventListener("scroll", function() {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(function() {
+      scrollHandlers.forEach(function(fn) { fn(); });
+      scrollTicking = false;
+    });
+  }
+}, { passive: true });
+
 // ===== Scroll Progress =====
-const progressBar = document.getElementById("scroll-progress");
+var progressBar = document.getElementById("scroll-progress");
 if (progressBar) {
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  onScroll(function() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     progressBar.style.width = progress + "%";
-  }, { passive: true });
+  });
 }
 
 // ===== Scroll Reveal =====
@@ -46,6 +61,8 @@ const canvas = document.getElementById("particle-canvas");
 if (canvas && !prefersReducedMotion) {
   const ctx = canvas.getContext("2d");
   let particles = [];
+  let animId = null;
+  let canvasActive = false;
 
   function resizeCanvas() {
     const hero = document.querySelector(".hero");
@@ -71,6 +88,7 @@ if (canvas && !prefersReducedMotion) {
   }
 
   function animateParticles() {
+    if (!canvasActive) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach((p) => {
       p.x += p.speedX;
@@ -84,11 +102,37 @@ if (canvas && !prefersReducedMotion) {
       ctx.fillStyle = "hsla(" + p.hue + ", 85%, 65%, " + p.opacity + ")";
       ctx.fill();
     });
-    requestAnimationFrame(animateParticles);
+    animId = requestAnimationFrame(animateParticles);
   }
+
+  function startCanvas() {
+    if (canvasActive) return;
+    canvasActive = true;
+    animId = requestAnimationFrame(animateParticles);
+  }
+
+  function stopCanvas() {
+    canvasActive = false;
+    if (animId) { cancelAnimationFrame(animId); animId = null; }
+  }
+
   resizeCanvas();
   createParticles(100);
-  animateParticles();
+
+  // Only animate when hero section is visible
+  const heroSection = document.querySelector(".hero");
+  if (heroSection) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) startCanvas();
+        else stopCanvas();
+      });
+    }, { threshold: 0 }).observe(heroSection);
+    // Start initially if visible
+    var heroRect = heroSection.getBoundingClientRect();
+    if (heroRect.bottom > 0 && heroRect.top < window.innerHeight) startCanvas();
+  }
+
   window.addEventListener("resize", () => { resizeCanvas(); createParticles(100); });
 }
 
@@ -117,11 +161,11 @@ navMenu?.querySelectorAll(".nav-link").forEach((link) => {
   });
 });
 
-window.addEventListener("scroll", () => {
+onScroll(function() {
   if (chapterNav) {
     chapterNav.classList.toggle("scrolled", window.scrollY > 60);
   }
-}, { passive: true });
+});
 
 // ===== Active Chapter Highlight =====
 const chapters = document.querySelectorAll(".story-chapter[id^='ch']");
@@ -215,14 +259,14 @@ loadPhotoPreview();
 const progressRing = document.getElementById("progress-ring");
 const progressRingFg = document.getElementById("progress-ring-fg");
 if (progressRingFg && progressRing) {
-  const circumference = 125.6;
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+  var circumference = 125.6;
+  onScroll(function() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? scrollTop / docHeight : 0;
     progressRingFg.style.strokeDashoffset = circumference * (1 - progress);
     progressRing.classList.toggle("visible", scrollTop > window.innerHeight * 0.5);
-  }, { passive: true });
+  });
 }
 
 function backToTop() {
@@ -273,14 +317,14 @@ if (footerStars) {
 const heroContent = document.querySelector(".hero-content");
 const heroBg = document.querySelector(".hero-basketball-bg");
 if (heroContent && !prefersReducedMotion) {
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
+  onScroll(function() {
+    var scrollY = window.scrollY;
     if (scrollY < window.innerHeight) {
       heroContent.style.transform = "translateY(" + (scrollY * 0.12) + "px)";
       heroContent.style.opacity = 1 - (scrollY / window.innerHeight) * 0.35;
       if (heroBg) heroBg.style.transform = "translateY(" + (scrollY * 0.06) + "px)";
     }
-  }, { passive: true });
+  });
 }
 
 // ===== Character Reveal for Chapter Headings =====

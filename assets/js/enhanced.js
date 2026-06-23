@@ -1,16 +1,148 @@
-﻿/* ========================================
+/* ========================================
    Enhanced Interactions — 杨珊的故事
    ======================================== */
 
 document.addEventListener("DOMContentLoaded", function() {
 
-  /* ===== 1. Golden Particles (Hero Banner) ===== */
-  const particleContainer = document.getElementById("golden-particles");
-  if (particleContainer) {
+  /* ===== 1. 花瓣、蝴蝶、星光、飘叶 (全页背景) ===== */
+  (function() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    /* --- 花瓣容器 --- */
+    var petalContainer = document.createElement("div");
+    petalContainer.className = "petal-container";
+    petalContainer.setAttribute("aria-hidden", "true");
+    document.body.appendChild(petalContainer);
+
+    /* --- 蝴蝶容器 --- */
+    var butterflyContainer = document.createElement("div");
+    butterflyContainer.className = "butterfly-container";
+    butterflyContainer.setAttribute("aria-hidden", "true");
+    document.body.appendChild(butterflyContainer);
+
+    /* --- 星光容器 --- */
+    var sparkleContainer = document.createElement("div");
+    sparkleContainer.className = "sparkle-container";
+    sparkleContainer.setAttribute("aria-hidden", "true");
+    document.body.appendChild(sparkleContainer);
+
+    /* --- 飘叶容器 --- */
+    var leafContainer = document.createElement("div");
+    leafContainer.className = "leaf-container";
+    leafContainer.setAttribute("aria-hidden", "true");
+    document.body.appendChild(leafContainer);
+
+    var petalChars = ["🌸", "💮", "🌺", "🌷", "✿", "🌼", "🏵"];
+    var butterflyChars = ["🦋", "🦋", "🦋"];
+    var leafChars = ["🍃", "🌿", "🍂", "🍁"];
+    var active = true;
+
+    document.addEventListener("visibilitychange", function() {
+      active = !document.hidden;
+    });
+
+    /* --- 花瓣: 混合三种下落模式 --- */
+    var petalModes = ["petal", "petal-spiral", "petal-gentle"];
+    function createPetal() {
+      var el = document.createElement("span");
+      var mode = petalModes[Math.floor(Math.random() * petalModes.length)];
+      el.className = mode;
+      el.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
+      el.style.left = Math.random() * 100 + "%";
+      el.style.fontSize = (10 + Math.random() * 16) + "px";
+      el.style.opacity = (0.35 + Math.random() * 0.4);
+      el.style.setProperty("--petal-drift", (Math.random() * 100 - 50) + "px");
+      el.style.setProperty("--petal-rot", (Math.random() * 360) + "deg");
+      el.style.animationDuration = (7 + Math.random() * 14) + "s";
+      el.style.animationDelay = Math.random() * 10 + "s";
+      petalContainer.appendChild(el);
+
+      el.addEventListener("animationiteration", function() {
+        el.style.left = Math.random() * 100 + "%";
+        el.style.fontSize = (10 + Math.random() * 16) + "px";
+        el.style.opacity = (0.35 + Math.random() * 0.4);
+        el.className = petalModes[Math.floor(Math.random() * petalModes.length)];
+        el.style.setProperty("--petal-drift", (Math.random() * 100 - 50) + "px");
+        el.style.animationDuration = (7 + Math.random() * 14) + "s";
+      });
+    }
+    for (var i = 0; i < 12; i++) createPetal();
+    setInterval(function() { if (active && petalContainer.children.length < 15) createPetal(); }, 2500);
+
+    /* --- 蝴蝶: 2-3只，各有不同路径 --- */
+    var butterflyCount = window.innerWidth < 768 ? 2 : 3;
+    for (var b = 0; b < butterflyCount; b++) {
+      var bf = document.createElement("span");
+      bf.className = "butterfly";
+      bf.textContent = butterflyChars[b % butterflyChars.length];
+      bf.style.left = (10 + Math.random() * 80) + "%";
+      bf.style.top = (50 + Math.random() * 40) + "%";
+      bf.style.animationDuration = (12 + Math.random() * 10) + "s";
+      bf.style.animationDelay = Math.random() * 8 + "s";
+      bf.style.fontSize = (1.2 + Math.random() * 0.8) + "rem";
+      butterflyContainer.appendChild(bf);
+
+      bf.addEventListener("animationiteration", function() {
+        this.style.left = (10 + Math.random() * 80) + "%";
+        this.style.animationDuration = (12 + Math.random() * 10) + "s";
+        this.style.fontSize = (1.2 + Math.random() * 0.8) + "rem";
+      });
+    }
+
+    /* --- 星光: 散布15个微闪点 --- */
+    for (var s = 0; s < 15; s++) {
+      var sp = document.createElement("div");
+      sp.className = "sparkle";
+      sp.style.left = Math.random() * 95 + "%";
+      sp.style.top = Math.random() * 90 + "%";
+      sp.style.width = (2 + Math.random() * 4) + "px";
+      sp.style.height = sp.style.width;
+      sp.style.animationDuration = (2 + Math.random() * 3) + "s";
+      sp.style.animationDelay = Math.random() * 3 + "s";
+      sparkleContainer.appendChild(sp);
+
+      sp.addEventListener("animationiteration", function() {
+        this.style.left = Math.random() * 95 + "%";
+        this.style.top = Math.random() * 90 + "%";
+        this.style.animationDuration = (2 + Math.random() * 3) + "s";
+      });
+    }
+
+    /* --- 飘叶: 4-5片大叶子 --- */
+    var leafCount = window.innerWidth < 768 ? 4 : 5;
+    for (var l = 0; l < leafCount; l++) {
+      var le = document.createElement("span");
+      le.className = "leaf";
+      le.textContent = leafChars[l % leafChars.length];
+      le.style.left = Math.random() * 100 + "%";
+      le.style.fontSize = (16 + Math.random() * 14) + "px";
+      le.style.opacity = (0.35 + Math.random() * 0.35);
+      le.style.setProperty("--leaf-drift", (Math.random() * 80 - 40) + "px");
+      le.style.animationDuration = (10 + Math.random() * 12) + "s";
+      le.style.animationDelay = Math.random() * 10 + "s";
+      leafContainer.appendChild(le);
+
+      le.addEventListener("animationiteration", function() {
+        this.style.left = Math.random() * 100 + "%";
+        this.style.fontSize = (16 + Math.random() * 14) + "px";
+        this.style.opacity = (0.35 + Math.random() * 0.35);
+        this.style.setProperty("--leaf-drift", (Math.random() * 80 - 40) + "px");
+        this.style.animationDuration = (10 + Math.random() * 12) + "s";
+      });
+    }
+  })();
+
+  /* ===== 2. Golden Particles (Hero Banner) — visibility-aware ===== */
+  (function() {
+    var particleContainer = document.getElementById("golden-particles");
+    if (!particleContainer) return;
+    var active = false;
+    var timer = null;
+
     function createParticle() {
-      const p = document.createElement("div");
+      var p = document.createElement("div");
       p.className = "golden-particle";
-      const size = 3 + Math.random() * 5;
+      var size = 3 + Math.random() * 5;
       p.style.width = size + "px";
       p.style.height = size + "px";
       p.style.left = Math.random() * 100 + "%";
@@ -19,23 +151,55 @@ document.addEventListener("DOMContentLoaded", function() {
       p.style.opacity = 0.3 + Math.random() * 0.5;
       particleContainer.appendChild(p);
     }
-    for (let i = 0; i < 35; i++) createParticle();
-  }
 
-  /* ===== 2. Golden Fireworks (Chapter 12) ===== */
-  const fireworks = document.getElementById("golden-fireworks");
-  if (fireworks) {
+    function startParticles() {
+      if (active) return;
+      active = true;
+      for (var i = 0; i < 35; i++) createParticle();
+      // Periodically add more
+      timer = setInterval(function() {
+        if (active) createParticle();
+      }, 2000);
+    }
+
+    function stopParticles() {
+      active = false;
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    var hero = document.querySelector(".hero");
+    if (hero) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) startParticles();
+          else stopParticles();
+        });
+      }, { threshold: 0 }).observe(hero);
+      // Start if already visible
+      var r = hero.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) startParticles();
+    }
+  })();
+
+  /* ===== 3. Golden Fireworks (Chapter 12) ===== */
+  (function() {
+    var fireworks = document.getElementById("golden-fireworks");
+    if (!fireworks) return;
+    var active = false;
+    var timer = null;
+
     function burstFirework() {
-      const cx = 20 + Math.random() * 60;
-      const cy = 20 + Math.random() * 50;
-      const count = 20 + Math.floor(Math.random() * 20);
-      const colors = ["var(--gold)", "var(--gold-light)", "var(--amber)", "var(--orange-warm)"];
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement("div");
+      if (!active) return;
+      var cx = 20 + Math.random() * 60;
+      var cy = 20 + Math.random() * 50;
+      var count = 20 + Math.floor(Math.random() * 20);
+      var colors = ["var(--gold)", "var(--gold-light)", "var(--amber)", "var(--orange-warm)"];
+      for (var i = 0; i < count; i++) {
+        var p = document.createElement("div");
         p.className = "firework-particle";
-        const angle = (i / count) * 360;
-        const dist = 30 + Math.random() * 80;
-        const rad = angle * Math.PI / 180;
+        var angle = (i / count) * 360;
+        var dist = 30 + Math.random() * 80;
+        var rad = angle * Math.PI / 180;
         p.style.left = cx + "%";
         p.style.top = cy + "%";
         p.style.setProperty("--fx", Math.cos(rad) * dist + "px");
@@ -46,38 +210,37 @@ document.addEventListener("DOMContentLoaded", function() {
         p.style.animationDuration = 2 + Math.random() * 2 + "s";
         p.style.animationDelay = Math.random() * 0.5 + "s";
         fireworks.appendChild(p);
-        // Clean up after animation
-        setTimeout(() => p.remove(), 4000);
+        setTimeout(function() { p.remove(); }, 4000);
       }
     }
-    // Initial bursts
-    for (let b = 0; b < 3; b++) {
-      setTimeout(() => burstFirework(), b * 800);
-    }
-    // Periodic bursts while chapter 12 is visible
-    let fireworkTimer = null;
-    const obs = new IntersectionObserver(function(entries) {
+
+    new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          fireworkTimer = setInterval(burstFirework, 4000);
-          // Burst on first view
-          burstFirework();
+          if (!active) {
+            active = true;
+            // Burst 3 times on entry
+            for (var b = 0; b < 3; b++) {
+              setTimeout(function() { burstFirework(); }, b * 800);
+            }
+            timer = setInterval(function() { burstFirework(); }, 4000);
+          }
         } else {
-          if (fireworkTimer) { clearInterval(fireworkTimer); fireworkTimer = null; }
+          active = false;
+          if (timer) { clearInterval(timer); timer = null; }
         }
       });
-    }, { threshold: 0.3 });
-    obs.observe(fireworks);
-  }
+    }, { threshold: 0.3 }).observe(fireworks);
+  })();
 
-  /* ===== 3. Guitar note interaction ===== */
-  const guitarCard = document.getElementById("guitar-card");
+  /* ===== 4. Guitar note interaction ===== */
+  var guitarCard = document.getElementById("guitar-card");
   if (guitarCard) {
     guitarCard.addEventListener("click", function() {
-      const notes = this.querySelectorAll(".note-note");
+      var notes = this.querySelectorAll(".note-note");
       notes.forEach(function(n, i) {
         n.style.animation = "none";
-        n.offsetHeight; // force reflow
+        n.offsetHeight;
         n.style.animation = "noteFloat 0.5s ease-in-out " + (i * 0.1) + "s";
         n.style.color = "var(--coral-deep)";
         setTimeout(function() { n.style.color = ""; }, 800);
@@ -85,11 +248,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  /* ===== 4. Off-key visual toggle ===== */
-  const offkeyCard = document.getElementById("offkey-card");
+  /* ===== 5. Off-key visual toggle ===== */
+  var offkeyCard = document.getElementById("offkey-card");
   if (offkeyCard) {
     offkeyCard.addEventListener("click", function() {
-      const path = this.querySelector(".offkey-path.her");
+      var path = this.querySelector(".offkey-path.her");
       if (path) {
         path.style.animationDuration = "0.3s";
         setTimeout(function() { path.style.animationDuration = ""; }, 500);

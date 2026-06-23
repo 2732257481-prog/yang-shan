@@ -520,3 +520,168 @@
 .gallery-overlay.active ~ .music-player {
   bottom: 90px;
 }
+
+/* ===== 花瓣飘落 (全页背景, 多种模式) ===== */
+.petal-container {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.petal {
+  position: absolute; top: -30px;
+  will-change: transform;
+  animation: petalFall linear infinite;
+}
+.petal-spiral {
+  position: absolute; top: -30px;
+  will-change: transform;
+  animation: petalSpiral linear infinite;
+}
+.petal-gentle {
+  position: absolute; top: -30px;
+  will-change: transform;
+  animation: petalGentle linear infinite;
+}
+/* 直落+飘移 */
+@keyframes petalFall {
+  0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.7; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateY(105vh) translateX(var(--petal-drift, 30px)) rotate(var(--petal-rot, 180deg)); opacity: 0; }
+}
+/* 螺旋飘落 */
+@keyframes petalSpiral {
+  0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.65; }
+  50%  { transform: translateY(55vh) translateX(var(--petal-drift, -40px)) rotate(180deg); opacity: 0.55; }
+  100% { transform: translateY(105vh) translateX(calc(var(--petal-drift, 30px) * -0.5)) rotate(360deg); opacity: 0; }
+}
+/* 轻飘慢落 */
+@keyframes petalGentle {
+  0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
+  8%   { opacity: 0.6; }
+  60%  { transform: translateY(60vh) translateX(var(--petal-drift, 15px)) rotate(var(--petal-rot, 90deg)); opacity: 0.5; }
+  100% { transform: translateY(105vh) translateX(calc(var(--petal-drift, 15px) * 2)) rotate(calc(var(--petal-rot, 90deg) + 200deg)); opacity: 0; }
+}
+
+/* ===== 蝴蝶飞舞 ===== */
+.butterfly-container {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.butterfly {
+  position: absolute; will-change: transform; font-size: 1.5rem;
+  animation: butterflyFly linear infinite;
+}
+@keyframes butterflyFly {
+  0%   { transform: translate(0, 0) scaleX(1) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.8; }
+  15%  { transform: translate(15vw, -30vh) scaleX(-1) rotate(-5deg); }
+  30%  { transform: translate(35vw, -55vh) scaleX(1) rotate(3deg); }
+  45%  { transform: translate(20vw, -35vh) scaleX(-1) rotate(-8deg); }
+  55%  { transform: translate(50vw, -70vh) scaleX(1) rotate(5deg); }
+  70%  { transform: translate(30vw, -45vh) scaleX(-1) rotate(-3deg); }
+  85%  { transform: translate(45vw, -85vh) scaleX(1) rotate(0deg); opacity: 0.6; }
+  100% { transform: translate(10vw, -105vh) scaleX(-1) rotate(-5deg); opacity: 0; }
+}
+
+/* ===== 星光微闪 ===== */
+.sparkle-container {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+.sparkle {
+  position: absolute; border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold-light);
+  will-change: opacity;
+  animation: sparkleBlink ease-in-out infinite;
+}
+@keyframes sparkleBlink {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  30%, 70% { opacity: 0.9; transform: scale(1.2); }
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* ===== 飘叶 ===== */
+.leaf-container {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.leaf {
+  position: absolute; top: -30px; will-change: transform;
+  animation: leafSway linear infinite;
+}
+@keyframes leafSway {
+  0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.6; }
+  25%  { transform: translateY(25vh) translateX(var(--leaf-drift, 40px)) rotate(25deg); }
+  50%  { transform: translateY(50vh) translateX(calc(var(--leaf-drift, 40px) * -0.6)) rotate(-15deg); }
+  75%  { transform: translateY(75vh) translateX(var(--leaf-drift, 40px)) rotate(20deg); opacity: 0.45; }
+  100% { transform: translateY(105vh) translateX(calc(var(--leaf-drift, 40px) * -0.3)) rotate(-10deg); opacity: 0; }
+}
+
+/* ===== Hero 花束增强 ===== */
+.hero-content::before {
+  content: "🌸🌺🌷";
+  display: block; font-size: 2rem; text-align: center;
+  margin-bottom: 6px; letter-spacing: 4px;
+  animation: bouquetDance 3s ease-in-out infinite;
+}
+@keyframes bouquetDance {
+  0%, 100% { transform: translateY(0) scale(1); }
+  15% { transform: translateY(-3px) scale(1.05) rotate(-2deg); }
+  35% { transform: translateY(1px) scale(0.98) rotate(1deg); }
+  55% { transform: translateY(-4px) scale(1.03) rotate(-1deg); }
+  75% { transform: translateY(2px) scale(0.97) rotate(2deg); }
+}
+
+/* ===== 章节标题花装饰 ===== */
+.chapter-heading::before {
+  content: "🌸 ";
+  font-size: 0.75em;
+}
+.section-tag::after {
+  content: " 🌺";
+}
+
+/* ===== 花边分割线 ===== */
+.section-wave-divider {
+  position: relative;
+}
+.section-wave-divider::before {
+  content: "🌺 ─── ✿ ─── 🌸 ─── 🌼 ─── 🌺";
+  display: block; text-align: center; font-size: 0.85rem;
+  padding: 12px 0; letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+/* ===== Footer 花边 ===== */
+.footer-hearts::before {
+  content: "🌺 🌸 🌼 💮 🌷 🏵 🌺";
+  display: block; font-size: 1.1rem; margin-bottom: 8px;
+  letter-spacing: 3px;
+}
+.footer-title::before {
+  content: "💐 ";
+}
+
+/* ===== GPU 加速层 ===== */
+.ambient-orb,
+.float-item,
+.golden-particle,
+.star,
+.bokeh-dot,
+.firework-particle,
+.butterfly,
+.leaf,
+.petal,
+.petal-spiral,
+.petal-gentle {
+  will-change: transform;
+}
+.ambient-orb, .sparkle {
+  will-change: transform, opacity;
+}
+
+/* ===== 移动端优化 ===== */
+@media (hover: none) and (pointer: coarse) {
+  .golden-particle { animation-duration: 15s; }
+  .butterfly { font-size: 1.2rem; }
+  .sparkle { box-shadow: 0 0 3px var(--gold); } /* 减少模糊计算 */
+}
