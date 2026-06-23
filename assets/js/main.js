@@ -178,17 +178,10 @@ function closeGalleryOverlay() {
 async function loadPhotoPreview() {
   var grid = document.getElementById("photo-preview");
   if (!grid) return;
-  var photos;
-  if (typeof PHOTOS_DATA !== 'undefined') {
-    photos = PHOTOS_DATA;
-  } else {
-    try {
-      var res = await fetch("photos.json");
-      photos = await res.json();
-    } catch (e) { grid.innerHTML = ''; return; }
-  }
-  if (!photos || !photos.length) { grid.innerHTML = ''; return; }
-  var preview = photos.slice(0, 6);
+  try {
+    var res = await fetch("photos.json");
+    var photos = await res.json();
+    var preview = photos.slice(0, 6);
     grid.innerHTML = preview.map(function(photo, i) {
       return '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
         '<img data-src="' + CDN + (photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async" onerror="this.src=\'' + CDN + photo.fallback + '\'">' +
@@ -208,10 +201,13 @@ async function loadPhotoPreview() {
     grid.querySelectorAll('img[data-src]').forEach(function(img) { observer.observe(img); });
     grid.querySelectorAll(".photo-preview-item").forEach(function(item) {
       item.addEventListener("click", navigateToGallery);
-      item.addEventListener("keydown", function(e) {
+      item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navigateToGallery(); }
       });
     });
+  } catch (e) {
+    grid.innerHTML = "";
+  }
 }
 loadPhotoPreview();
 
