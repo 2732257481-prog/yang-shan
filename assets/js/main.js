@@ -173,18 +173,31 @@ function closeGalleryOverlay() {
   document.body.style.overflow = "";
 }
 async function loadPhotoPreview() {
-  const grid = document.getElementById("photo-preview");
+  var grid = document.getElementById("photo-preview");
   if (!grid) return;
   try {
-    const res = await fetch("photos.json");
-    const photos = await res.json();
-    const preview = photos.slice(0, 6);
-    grid.innerHTML = preview.map((photo, i) =>
-      '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
-      '<img src="' + (photo.thumb || photo.file) + '" alt="' + photo.title + '" loading="lazy" decoding="async" onerror="this.src=\'' + photo.fallback + '\'">' +
-      "</div>"
-    ).join("");
-    grid.querySelectorAll(".photo-preview-item").forEach((item) => {
+    var res = await fetch("photos.json");
+    var photos = await res.json();
+    var preview = photos.slice(0, 6);
+    var CDN = 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/';
+    grid.innerHTML = preview.map(function(photo, i) {
+      return '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
+        '<img data-src="' + CDN + (photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async" onerror="this.src=\'' + CDN + photo.fallback + '\'">' +
+        '</div>';
+    }).join("");
+    // Lazy load preview images
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var img = entry.target;
+          var src = img.getAttribute('data-src');
+          if (src) { img.src = src; img.removeAttribute('data-src'); }
+          observer.unobserve(img);
+        }
+      });
+    }, { rootMargin: '100px' });
+    grid.querySelectorAll('img[data-src]').forEach(function(img) { observer.observe(img); });
+    grid.querySelectorAll(".photo-preview-item").forEach(function(item) {
       item.addEventListener("click", navigateToGallery);
       item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); navigateToGallery(); }

@@ -1,7 +1,30 @@
-﻿// ===== Gallery Data =====
+﻿// ===== CDN =====
+var CDN = 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/';
+function cdn(p) { return CDN + p; }
+
+// ===== Gallery Data =====
 let photos = [];
 let currentIndex = 0;
 let isViewerOpen = false;
+
+// Lazy load observer
+let lazyObserver = null;
+function initLazyObserver() {
+  if (lazyObserver) return;
+  lazyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var img = entry.target;
+        var src = img.getAttribute('data-src');
+        if (src) {
+          img.src = src;
+          img.removeAttribute('data-src');
+        }
+        lazyObserver.unobserve(img);
+      }
+    });
+  }, { rootMargin: '100px' });
+}
 
 // Touch state
 let touchStartX = 0;
@@ -38,15 +61,20 @@ async function loadPhotos() {
 
 // ===== Render Grid =====
 function renderGrid() {
-  const grid = document.getElementById("gallery-grid");
+  var grid = document.getElementById("gallery-grid");
   if (!grid) return;
-  grid.innerHTML = photos.map((photo, index) => `
-    <div class="gallery-grid-item" data-index="${index}" onclick="openViewer(${index})">
-      <img src="${photo.thumb || photo.file}" alt="${photo.title}" loading="lazy" decoding="async"
-        onerror="this.src='${photo.fallback}'; this.onerror=null;">
-      <div class="item-overlay"><span>${photo.title}</span></div>
-    </div>
-  `).join("");
+  initLazyObserver();
+  grid.innerHTML = photos.map(function(photo, index) {
+    return '<div class="gallery-grid-item" data-index="' + index + '" onclick="openViewer(' + index + ')">' +
+      '<img data-src="' + cdn(photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async"' +
+      ' onerror="this.src=\'' + cdn(photo.fallback) + '\'; this.onerror=null;">' +
+      '<div class="item-overlay"><span>' + photo.title + '</span></div>' +
+      '</div>';
+  }).join("");
+  // Observe all new images
+  grid.querySelectorAll('img[data-src]').forEach(function(img) {
+    lazyObserver.observe(img);
+  });
 }
 
 // ===== Open Viewer =====
@@ -74,12 +102,12 @@ function closeViewer() {
 }
 
 function updateViewerImage() {
-  const img = document.getElementById("viewer-image");
-  const title = document.getElementById("viewer-title");
-  const desc = document.getElementById("viewer-desc");
-  const photo = photos[currentIndex];
+  var img = document.getElementById("viewer-image");
+  var title = document.getElementById("viewer-title");
+  var desc = document.getElementById("viewer-desc");
+  var photo = photos[currentIndex];
   if (!img || !photo) return;
-  img.src = photo.file;
+  img.src = cdn(photo.file);
   img.alt = photo.title;
   img.style.transform = "scale(1)";
   if (title) title.textContent = photo.title;
