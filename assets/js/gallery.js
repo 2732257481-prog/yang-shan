@@ -42,16 +42,19 @@ let renderedCount = 0;
 
 function renderGrid() {
   const grid = document.getElementById("gallery-grid");
+  const overlay = document.getElementById("gallery-overlay");
   if (!grid) return;
   renderedCount = 0;
   grid.innerHTML = '';
   renderPage(grid);
-  // Infinite scroll
-  grid.addEventListener('scroll', () => {
-    if (renderedCount >= photos.length) return;
-    const nearBottom = grid.scrollHeight - grid.scrollTop - grid.clientHeight < 300;
-    if (nearBottom) renderPage(grid);
-  }, { passive: true });
+  // Infinite scroll on overlay (the actual scrolling container)
+  if (overlay) {
+    overlay.addEventListener('scroll', () => {
+      if (renderedCount >= photos.length) return;
+      const nearBottom = overlay.scrollHeight - overlay.scrollTop - overlay.clientHeight < 300;
+      if (nearBottom) renderPage(grid);
+    }, { passive: true });
+  }
 }
 
 function renderPage(grid) {
