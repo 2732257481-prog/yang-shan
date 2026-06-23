@@ -1,9 +1,6 @@
-﻿.nodejs-v26.3.1/
-_simple-server.js
-server.js
-server2.js
-index.html.bak
-
+﻿node_modules/
+package-lock.json
+package.json
 .nodejs-v26.3.1/
 _simple-server.js
 server.js
