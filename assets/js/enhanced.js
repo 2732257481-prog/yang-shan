@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /* --- 花瓣: 手机2种模式8个，桌面全部12个 --- */
     var petalModes = isMobile ? ["petal", "petal-gentle"] : ["petal", "petal-spiral", "petal-gentle"];
-    var petalTotal = isMobile ? 8 : 12;
+    var petalTotal = isMobile ? 8 : 10;
     function createPetal() {
       var el = document.createElement("span");
       var mode = petalModes[Math.floor(Math.random() * petalModes.length)];
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     /* --- 飘叶: 手机3片，桌面5片 --- */
-    var leafCount = isMobile ? 3 : 5;
+    var leafCount = isMobile ? 3 : 4;
     for (var l = 0; l < leafCount; l++) {
       var le = document.createElement("span");
       le.className = "leaf";
@@ -135,14 +135,29 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   })();
 
-  /* ===== 2. Golden Particles (Hero Banner) — visibility-aware ===== */
+  /* ===== 2. Golden Particles (Hero Banner) — lifecycle-managed, auto-cleanup ===== */
   (function() {
     var particleContainer = document.getElementById("golden-particles");
     if (!particleContainer) return;
+    var isMobile = window.innerWidth < 768;
+    var MAX_PARTICLES = 50;
+    var INITIAL_COUNT = isMobile ? 15 : 35;
+    var CREATE_INTERVAL = isMobile ? 3000 : 2000;
     var active = false;
     var timer = null;
+    var particleCount = 0;
+
+    function removeParticle(p) {
+      if (p && p.parentNode) p.parentNode.removeChild(p);
+      particleCount = Math.max(0, particleCount - 1);
+    }
 
     function createParticle() {
+      if (particleCount >= MAX_PARTICLES) {
+        // Remove oldest particle if at limit
+        var oldest = particleContainer.firstElementChild;
+        if (oldest) removeParticle(oldest);
+      }
       var p = document.createElement("div");
       p.className = "golden-particle";
       var size = 3 + Math.random() * 5;
@@ -152,22 +167,30 @@ document.addEventListener("DOMContentLoaded", function() {
       p.style.animationDuration = 6 + Math.random() * 8 + "s";
       p.style.animationDelay = Math.random() * 5 + "s";
       p.style.opacity = 0.3 + Math.random() * 0.5;
+      p.addEventListener("animationend", function() { removeParticle(p); });
       particleContainer.appendChild(p);
+      particleCount++;
     }
 
     function startParticles() {
       if (active) return;
       active = true;
-      for (var i = 0; i < 35; i++) createParticle();
-      // Periodically add more
+      for (var i = 0; i < INITIAL_COUNT; i++) createParticle();
       timer = setInterval(function() {
-        if (active) createParticle();
-      }, 2000);
+        if (!active) return;
+        // Only create if below max (animationend cleanup handles removal)
+        if (particleCount < MAX_PARTICLES) createParticle();
+      }, CREATE_INTERVAL);
     }
 
     function stopParticles() {
       active = false;
       if (timer) { clearInterval(timer); timer = null; }
+      // Remove all remaining particles to free DOM
+      while (particleContainer.firstChild) {
+        removeParticle(particleContainer.firstChild);
+      }
+      particleCount = 0;
     }
 
     var hero = document.querySelector(".hero");
@@ -178,7 +201,6 @@ document.addEventListener("DOMContentLoaded", function() {
           else stopParticles();
         });
       }, { threshold: 0 }).observe(hero);
-      // Start if already visible
       var r = hero.getBoundingClientRect();
       if (r.bottom > 0 && r.top < window.innerHeight) startParticles();
     }

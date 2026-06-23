@@ -116,8 +116,9 @@ if (canvas && !prefersReducedMotion) {
     if (animId) { cancelAnimationFrame(animId); animId = null; }
   }
 
+  var isMobileCanvas = window.innerWidth < 768;
   resizeCanvas();
-  createParticles(100);
+  createParticles(isMobileCanvas ? 50 : 100);
 
   // Only animate when hero section is visible
   const heroSection = document.querySelector(".hero");
@@ -133,7 +134,7 @@ if (canvas && !prefersReducedMotion) {
     if (heroRect.bottom > 0 && heroRect.top < window.innerHeight) startCanvas();
   }
 
-  window.addEventListener("resize", () => { resizeCanvas(); createParticles(100); });
+  window.addEventListener("resize", () => { var m = window.innerWidth < 768; resizeCanvas(); createParticles(m ? 50 : 100); });
 }
 
 // ===== Hero Start Button =====
@@ -190,11 +191,14 @@ if (chapters.length && navLinks.length) {
 
 function navigateToGallery() {
   if (MusicPlayer.homeAudio) MusicPlayer.homeAudio.pause();
-  var a = new Audio(CDN + "assets/audio/gallery.mp3");
-  a.loop = true; a.volume = 0.4;
-  a.addEventListener("ended", function(){ a.currentTime = 0; a.play().catch(function(){}); });
+  var a = MusicPlayer.galleryAudio;
+  if (!a) {
+    a = new Audio(CDN + "assets/audio/gallery.mp3");
+    a.loop = true; a.volume = 0.4;
+    MusicPlayer.galleryAudio = a;
+  }
+  a.currentTime = 0;
   a.play().catch(function(){});
-  MusicPlayer.galleryAudio = a;
   MusicPlayer.activePlayer = "gallery";
   MusicPlayer.isPlaying = true;
   if (MusicPlayer.label) { MusicPlayer.label.textContent = "手写的从前 — 周杰伦"; MusicPlayer.label.classList.add("show"); }
