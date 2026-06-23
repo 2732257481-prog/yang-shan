@@ -227,12 +227,15 @@ async function loadPhotoPreview() {
   var grid = document.getElementById("photo-preview");
   if (!grid) return;
   try {
-    var res = await fetch("photos.json");
-    var photos = await res.json();
+    var photos = window.__PHOTOS__;
+    if (!photos) {
+      var res = await fetch("photos.json");
+      photos = await res.json();
+    }
     var preview = photos.slice(0, 6);
     grid.innerHTML = preview.map(function(photo, i) {
       return '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
-        '<img data-src="' + CDN + (photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async" onerror="this.src=\'' + CDN + photo.fallback + '\'">' +
+        '<img data-src="' + CDN + (photo.thumb || photo.file) + '" alt="' + photo.title + '" width="400" height="400" decoding="async" onerror="this.src=\'' + CDN + photo.fallback + '\'">' +
         '</div>';
     }).join("");
     // Lazy load preview images

@@ -39,8 +39,12 @@ let lastPinchDist = 0;
 // ===== Load Photos =====
 async function loadPhotos() {
   try {
-    const res = await fetch("photos.json");
-    photos = await res.json();
+    var data = window.__PHOTOS__;
+    if (!data) {
+      const res = await fetch("photos.json");
+      data = await res.json();
+    }
+    photos = data;
     renderGrid();
   } catch (e) {
     console.warn("photos.json not found, using demo data");
@@ -66,7 +70,7 @@ function renderGrid() {
   initLazyObserver();
   grid.innerHTML = photos.map(function(photo, index) {
     return '<div class="gallery-grid-item" data-index="' + index + '" onclick="openViewer(' + index + ')">' +
-      '<img data-src="' + cdn(photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async"' +
+      '<img data-src="' + cdn(photo.thumb || photo.file) + '" alt="' + photo.title + '" width="400" height="400" decoding="async"' +
       ' onerror="this.src=\'' + cdn(photo.fallback) + '\'; this.onerror=null;">' +
       '<div class="item-overlay"><span>' + photo.title + '</span></div>' +
       '</div>';
