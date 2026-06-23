@@ -1105,7 +1105,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 }
 .offkey-wave span {
   display: block; width: 4px; background: var(--orange-warm); border-radius: 2px;
-  animation: offkeyBounce 0.8s ease-in-out infinite;
+  animation: offkeyBounce 1.6s ease-in-out infinite;
 }
 .offkey-wave span:nth-child(1) { height: 8px; animation-delay: 0s; }
 .offkey-wave span:nth-child(2) { height: 16px; animation-delay: 0.1s; }

@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
       el.style.opacity = (0.35 + Math.random() * 0.4);
       el.style.setProperty("--petal-drift", (Math.random() * 100 - 50) + "px");
       el.style.setProperty("--petal-rot", (Math.random() * 360) + "deg");
-      el.style.animationDuration = (7 + Math.random() * 14) + "s";
+      el.style.animationDuration = (10 + Math.random() * 14) + "s";
       el.style.animationDelay = Math.random() * 10 + "s";
       petalContainer.appendChild(el);
 
@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
         el.style.fontSize = (10 + Math.random() * 16) + "px";
         el.style.opacity = (0.35 + Math.random() * 0.4);
         el.className = petalModes[Math.floor(Math.random() * petalModes.length)];
-        el.style.setProperty("--petal-drift", (Math.random() * 100 - 50) + "px");
-        el.style.animationDuration = (7 + Math.random() * 14) + "s";
+        el.style.setProperty("--petal-drift", (Math.random() * 50 - 25) + "px");
+        el.style.animationDuration = (10 + Math.random() * 14) + "s";
       });
     }
     for (var i = 0; i < petalTotal; i++) createPetal();
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
       bf.textContent = butterflyChars[b % butterflyChars.length];
       bf.style.left = (10 + Math.random() * 80) + "%";
       bf.style.top = (50 + Math.random() * 40) + "%";
-      bf.style.animationDuration = (12 + Math.random() * 10) + "s";
+      bf.style.animationDuration = (16 + Math.random() * 12) + "s";
       bf.style.animationDelay = Math.random() * 8 + "s";
       bf.style.fontSize = (1.2 + Math.random() * 0.8) + "rem";
       butterflyContainer.appendChild(bf);
@@ -100,14 +100,14 @@ document.addEventListener("DOMContentLoaded", function() {
       sp.style.top = Math.random() * 90 + "%";
       sp.style.width = (2 + Math.random() * 4) + "px";
       sp.style.height = sp.style.width;
-      sp.style.animationDuration = (2 + Math.random() * 3) + "s";
+      sp.style.animationDuration = (3.5 + Math.random() * 4) + "s";
       sp.style.animationDelay = Math.random() * 3 + "s";
       sparkleContainer.appendChild(sp);
 
       sp.addEventListener("animationiteration", function() {
         this.style.left = Math.random() * 95 + "%";
         this.style.top = Math.random() * 90 + "%";
-        this.style.animationDuration = (2 + Math.random() * 3) + "s";
+        this.style.animationDuration = (3.5 + Math.random() * 4) + "s";
       });
     }
 
@@ -120,8 +120,8 @@ document.addEventListener("DOMContentLoaded", function() {
       le.style.left = Math.random() * 100 + "%";
       le.style.fontSize = (16 + Math.random() * 14) + "px";
       le.style.opacity = (0.35 + Math.random() * 0.35);
-      le.style.setProperty("--leaf-drift", (Math.random() * 80 - 40) + "px");
-      le.style.animationDuration = (10 + Math.random() * 12) + "s";
+      le.style.setProperty("--leaf-drift", (Math.random() * 50 - 25) + "px");
+      le.style.animationDuration = (14 + Math.random() * 14) + "s";
       le.style.animationDelay = Math.random() * 10 + "s";
       leafContainer.appendChild(le);
 
@@ -129,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function() {
         this.style.left = Math.random() * 100 + "%";
         this.style.fontSize = (16 + Math.random() * 14) + "px";
         this.style.opacity = (0.35 + Math.random() * 0.35);
-        this.style.setProperty("--leaf-drift", (Math.random() * 80 - 40) + "px");
-        this.style.animationDuration = (10 + Math.random() * 12) + "s";
+        this.style.setProperty("--leaf-drift", (Math.random() * 50 - 25) + "px");
+        this.style.animationDuration = (14 + Math.random() * 14) + "s";
       });
     }
   })();
