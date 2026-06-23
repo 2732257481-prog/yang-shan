@@ -323,7 +323,7 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
 .gallery-header-title { font-family: var(--font-title); font-size: 1.2rem; font-weight: 600; margin-left: auto; }
 
 .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; padding-bottom: calc(80px + var(--safe-bottom)); }
-.gallery-grid-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; border-radius: 4px; }
+.gallery-grid-item { aspect-ratio: 1; overflow: hidden; cursor: pointer; position: relative; border-radius: 4px; content-visibility: auto; contain-intrinsic-size: auto; }
 .gallery-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .gallery-grid-item:active img { transform: scale(1.05); }
 .gallery-grid-item .item-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px; background: linear-gradient(transparent, rgba(0,0,0,0.6)); opacity: 0; transition: opacity 0.3s ease; }
@@ -854,6 +854,8 @@ button { border: none; background: none; cursor: pointer; font-family: inherit; 
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: auto;
 }
 @media (hover: hover) {
   .gallery-grid-item:hover { transform: scale(1.02); box-shadow: 0 4px 16px rgba(232,90,66,0.25); }

@@ -36,17 +36,36 @@ async function loadPhotos() {
   }
 }
 
-// ===== Render Grid =====
+// ===== Render Grid with Pagination =====
+const PAGE_SIZE = 12;
+let renderedCount = 0;
+
 function renderGrid() {
   const grid = document.getElementById("gallery-grid");
   if (!grid) return;
-  grid.innerHTML = photos.map((photo, index) => `
-    <div class="gallery-grid-item" data-index="${index}" onclick="openViewer(${index})">
-      <img src="${photo.thumb || photo.file}" alt="${photo.title}" loading="lazy"
-        onerror="this.src='${photo.fallback}'; this.onerror=null;">
-      <div class="item-overlay"><span>${photo.title}</span></div>
-    </div>
-  `).join("");
+  renderedCount = 0;
+  grid.innerHTML = '';
+  renderPage(grid);
+  // Infinite scroll
+  grid.addEventListener('scroll', () => {
+    if (renderedCount >= photos.length) return;
+    const nearBottom = grid.scrollHeight - grid.scrollTop - grid.clientHeight < 300;
+    if (nearBottom) renderPage(grid);
+  }, { passive: true });
+}
+
+function renderPage(grid) {
+  const batch = photos.slice(renderedCount, renderedCount + PAGE_SIZE);
+  batch.forEach((photo, i) => {
+    const idx = renderedCount + i;
+    const div = document.createElement('div');
+    div.className = 'gallery-grid-item';
+    div.setAttribute('data-index', idx);
+    div.onclick = () => openViewer(idx);
+    div.innerHTML = '<img src="' + (photo.thumb || photo.file) + '" alt="' + photo.title + '" loading="lazy" decoding="async" onerror="this.src=\'' + photo.fallback + '\'; this.onerror=null;"><div class="item-overlay"><span>' + photo.title + '</span></div>';
+    grid.appendChild(div);
+  });
+  renderedCount += batch.length;
 }
 
 // ===== Open Viewer =====
