@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
     leafContainer.setAttribute("aria-hidden", "true");
     document.body.appendChild(leafContainer);
 
+    var isMobile = window.innerWidth < 768;
     var petalChars = ["🌸", "💮", "🌺", "🌷", "✿", "🌼", "🏵"];
-    var butterflyChars = ["🦋", "🦋", "🦋"];
+    var butterflyChars = ["🦋"];
     var leafChars = ["🍃", "🌿", "🍂", "🍁"];
     var active = true;
 
@@ -41,8 +42,9 @@ document.addEventListener("DOMContentLoaded", function() {
       active = !document.hidden;
     });
 
-    /* --- 花瓣: 混合三种下落模式 --- */
-    var petalModes = ["petal", "petal-spiral", "petal-gentle"];
+    /* --- 花瓣: 手机2种模式8个，桌面全部12个 --- */
+    var petalModes = isMobile ? ["petal", "petal-gentle"] : ["petal", "petal-spiral", "petal-gentle"];
+    var petalTotal = isMobile ? 8 : 12;
     function createPetal() {
       var el = document.createElement("span");
       var mode = petalModes[Math.floor(Math.random() * petalModes.length)];
@@ -66,11 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
         el.style.animationDuration = (7 + Math.random() * 14) + "s";
       });
     }
-    for (var i = 0; i < 12; i++) createPetal();
-    setInterval(function() { if (active && petalContainer.children.length < 15) createPetal(); }, 2500);
+    for (var i = 0; i < petalTotal; i++) createPetal();
+    setInterval(function() { if (active && petalContainer.children.length < petalTotal + 2) createPetal(); }, 2500);
 
-    /* --- 蝴蝶: 2-3只，各有不同路径 --- */
-    var butterflyCount = window.innerWidth < 768 ? 2 : 3;
+    /* --- 蝴蝶: 手机1只，桌面3只 --- */
+    var butterflyCount = isMobile ? 1 : 3;
     for (var b = 0; b < butterflyCount; b++) {
       var bf = document.createElement("span");
       bf.className = "butterfly";
@@ -89,8 +91,9 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
-    /* --- 星光: 散布15个微闪点 --- */
-    for (var s = 0; s < 15; s++) {
+    /* --- 星光: 手机8个，桌面15个 --- */
+    var sparkleCount = isMobile ? 8 : 15;
+    for (var s = 0; s < sparkleCount; s++) {
       var sp = document.createElement("div");
       sp.className = "sparkle";
       sp.style.left = Math.random() * 95 + "%";
@@ -108,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
-    /* --- 飘叶: 4-5片大叶子 --- */
-    var leafCount = window.innerWidth < 768 ? 4 : 5;
+    /* --- 飘叶: 手机3片，桌面5片 --- */
+    var leafCount = isMobile ? 3 : 5;
     for (var l = 0; l < leafCount; l++) {
       var le = document.createElement("span");
       le.className = "leaf";

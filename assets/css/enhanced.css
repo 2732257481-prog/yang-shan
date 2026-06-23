@@ -552,14 +552,14 @@
   0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
   5%   { opacity: 0.65; }
   50%  { transform: translateY(55vh) translateX(var(--petal-drift, -40px)) rotate(180deg); opacity: 0.55; }
-  100% { transform: translateY(105vh) translateX(calc(var(--petal-drift, 30px) * -0.5)) rotate(360deg); opacity: 0; }
+  100% { transform: translateY(105vh) translateX(-15px) rotate(360deg); opacity: 0; }
 }
 /* 轻飘慢落 */
 @keyframes petalGentle {
   0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
   8%   { opacity: 0.6; }
-  60%  { transform: translateY(60vh) translateX(var(--petal-drift, 15px)) rotate(var(--petal-rot, 90deg)); opacity: 0.5; }
-  100% { transform: translateY(105vh) translateX(calc(var(--petal-drift, 15px) * 2)) rotate(calc(var(--petal-rot, 90deg) + 200deg)); opacity: 0; }
+  60%  { transform: translateY(60vh) translateX(var(--petal-drift, 15px)) rotate(60deg); opacity: 0.5; }
+  100% { transform: translateY(105vh) translateX(30px) rotate(360deg); opacity: 0; }
 }
 
 /* ===== 蝴蝶飞舞 ===== */
@@ -589,8 +589,6 @@
 .sparkle {
   position: absolute; border-radius: 50%;
   background: var(--gold-light);
-  box-shadow: 0 0 6px var(--gold), 0 0 12px var(--gold-light);
-  will-change: opacity;
   animation: sparkleBlink ease-in-out infinite;
 }
 @keyframes sparkleBlink {
@@ -661,13 +659,8 @@
   content: "💐 ";
 }
 
-/* ===== GPU 加速层 ===== */
+/* ===== GPU 加速层（仅持续移动元素） ===== */
 .ambient-orb,
-.float-item,
-.golden-particle,
-.star,
-.bokeh-dot,
-.firework-particle,
 .butterfly,
 .leaf,
 .petal,
@@ -675,13 +668,13 @@
 .petal-gentle {
   will-change: transform;
 }
-.ambient-orb, .sparkle {
+.ambient-orb {
   will-change: transform, opacity;
 }
 
 /* ===== 移动端优化 ===== */
 @media (hover: none) and (pointer: coarse) {
   .golden-particle { animation-duration: 15s; }
-  .butterfly { font-size: 1.2rem; }
-  .sparkle { box-shadow: 0 0 3px var(--gold); } /* 减少模糊计算 */
+  .butterfly { font-size: 1rem; }
+  .petal-spiral { display: none; } /* 手机端去掉螺旋模式 */
 }
