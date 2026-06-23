@@ -1,4 +1,7 @@
-﻿// ===== Scroll Progress =====
+﻿// CDN prefix for GitHub-hosted assets
+var CDN = 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/';
+
+// ===== Scroll Progress =====
 const progressBar = document.getElementById("scroll-progress");
 if (progressBar) {
   window.addEventListener("scroll", () => {
@@ -143,7 +146,7 @@ if (chapters.length && navLinks.length) {
 
 function navigateToGallery() {
   if (MusicPlayer.homeAudio) MusicPlayer.homeAudio.pause();
-  var a = new Audio("assets/audio/gallery.mp3");
+  var a = new Audio(CDN + "assets/audio/gallery.mp3");
   a.loop = true; a.volume = 0.4;
   a.addEventListener("ended", function(){ a.currentTime = 0; a.play().catch(function(){}); });
   a.play().catch(function(){});
@@ -159,7 +162,7 @@ function navigateToGallery() {
 function closeGalleryOverlay() {
   if (typeof closeViewer === "function") closeViewer();
   if (MusicPlayer.galleryAudio) MusicPlayer.galleryAudio.pause();
-  var a = new Audio("assets/audio/a-thousand-years.mp3");
+  var a = new Audio(CDN + "assets/audio/a-thousand-years.mp3");
   a.loop = true; a.volume = 0.4;
   a.addEventListener("ended", function(){ a.currentTime = 0; a.play().catch(function(){}); });
   a.play().catch(function(){});
@@ -179,7 +182,6 @@ async function loadPhotoPreview() {
     var res = await fetch("photos.json");
     var photos = await res.json();
     var preview = photos.slice(0, 6);
-    var CDN = 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/';
     grid.innerHTML = preview.map(function(photo, i) {
       return '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
         '<img data-src="' + CDN + (photo.thumb || photo.file) + '" alt="' + photo.title + '" decoding="async" onerror="this.src=\'' + CDN + photo.fallback + '\'">' +

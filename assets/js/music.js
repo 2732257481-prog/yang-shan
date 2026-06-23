@@ -4,6 +4,7 @@
   activePlayer: "home",
   isPlaying: false,
   hasInteracted: false,
+  _cdn: 'https://cdn.jsdelivr.net/gh/2732257481-prog/yang-shan@master/',
 
   getAudio() {
     return this.activePlayer === "home" ? this.homeAudio : this.galleryAudio;
@@ -16,7 +17,7 @@
     document.body.appendChild(audioBox);
 
     this.homeAudio = new Audio();
-    this.homeAudio.src = "assets/audio/a-thousand-years.mp3";
+    this.homeAudio.src = this._cdn + "assets/audio/a-thousand-years.mp3";
     this.homeAudio.loop = true;
     this.homeAudio.volume = 0.4;
     this.homeAudio.preload = "auto";
@@ -28,7 +29,7 @@
     });
 
     this.galleryAudio = new Audio();
-    this.galleryAudio.src = "assets/audio/gallery.mp3";
+    this.galleryAudio.src = this._cdn + "assets/audio/gallery.mp3";
     this.galleryAudio.loop = true;
     this.galleryAudio.volume = 0.4;
     this.galleryAudio.preload = "auto";
