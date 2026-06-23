@@ -38,6 +38,11 @@ let lastPinchDist = 0;
 
 // ===== Load Photos =====
 async function loadPhotos() {
+  if (typeof PHOTOS_DATA !== 'undefined') {
+    photos = PHOTOS_DATA;
+    renderGrid();
+    return;
+  }
   try {
     const res = await fetch("photos.json");
     photos = await res.json();
