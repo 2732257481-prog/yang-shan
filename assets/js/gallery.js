@@ -42,7 +42,7 @@ function renderGrid() {
   if (!grid) return;
   grid.innerHTML = photos.map((photo, index) => `
     <div class="gallery-grid-item" data-index="${index}" onclick="openViewer(${index})">
-      <img src="${photo.file}" alt="${photo.title}" loading="lazy"
+      <img src="${photo.thumb || photo.file}" alt="${photo.title}" loading="lazy"
         onerror="this.src='${photo.fallback}'; this.onerror=null;">
       <div class="item-overlay"><span>${photo.title}</span></div>
     </div>

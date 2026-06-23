@@ -181,7 +181,7 @@ async function loadPhotoPreview() {
     const preview = photos.slice(0, 6);
     grid.innerHTML = preview.map((photo, i) =>
       '<div class="photo-preview-item" data-index="' + i + '" role="button" tabindex="0" aria-label="' + photo.title + '">' +
-      '<img src="' + photo.file + '" alt="' + photo.title + '" loading="lazy" onerror="this.src=\'' + photo.fallback + '\'">' +
+      '<img src="' + (photo.thumb || photo.file) + '" alt="' + photo.title + '" loading="lazy" onerror="this.src=\'' + photo.fallback + '\'">' +
       "</div>"
     ).join("");
     grid.querySelectorAll(".photo-preview-item").forEach((item) => {
